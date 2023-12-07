@@ -1,0 +1,40 @@
+﻿@{
+    ViewBag.Title = "Change";
+    Layout = "~/Views/Shared/_LayoutPage1.cshtml";
+}
+
+<hr />
+<div class="container">
+    <div class="row mb-1">
+        <div class="col-md-12">
+            <a class="home--login" href="@Url.Action("Index", "Home")">Home</a> >
+            <p class="sigin--login">Signin</p>
+        </div>
+    </div>
+</div>
+<hr />
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <p class="title--login mt-1">Change Password</p>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-2"></div>
+        <div class="col-md-8">
+            <form action="/Account/Change" method="post">
+                <div class="form-group">
+                    <label for="email">Password<sup>*</sup></label>
+                    <input type="password" class="form-control txt--login" placeholder="Enter password" name="password" required>
+                </div>
+                <div class="form-group">
+                    <label for="pwd">Confirm Password<sup>*</sup></label>
+                    <input type="password" class="form-control txt--login" placeholder="Enter confirm password" name="confirm" required>
+                </div>
+                <button type="submit" class="btn btn--dark--model btn--login mt-3">Submit</button>
+            </form>
+        </div>
+        <div class="col-md-2"></div>
+    </div>
+</div>
+
