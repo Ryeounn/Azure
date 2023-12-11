@@ -50,6 +50,8 @@ D:\A22063\Sneker\bin\roslyn\vbc.exe.config
 D:\A22063\Sneker\bin\roslyn\vbc.rsp
 D:\A22063\Sneker\bin\roslyn\VBCSCompiler.exe
 D:\A22063\Sneker\bin\roslyn\VBCSCompiler.exe.config
+D:\A22063\Sneker\bin\EntityFramework.dll
+D:\A22063\Sneker\bin\EntityFramework.SqlServer.dll
 D:\A22063\Sneker\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
 D:\A22063\Sneker\bin\Microsoft.Web.Infrastructure.dll
 D:\A22063\Sneker\bin\System.Web.Helpers.dll
@@ -58,6 +60,8 @@ D:\A22063\Sneker\bin\System.Web.Razor.dll
 D:\A22063\Sneker\bin\System.Web.Webpages.Deployment.dll
 D:\A22063\Sneker\bin\System.Web.Webpages.dll
 D:\A22063\Sneker\bin\System.Web.Webpages.Razor.dll
+D:\A22063\Sneker\bin\EntityFramework.xml
+D:\A22063\Sneker\bin\EntityFramework.SqlServer.xml
 D:\A22063\Sneker\bin\System.Web.Razor.xml
 D:\A22063\Sneker\bin\System.Web.Webpages.xml
 D:\A22063\Sneker\bin\System.Web.Webpages.Deployment.xml
@@ -70,7 +74,3 @@ D:\A22063\Sneker\obj\Debug\Sneker.csproj.CoreCompileInputs.cache
 D:\A22063\Sneker\obj\Debug\Sneker.csproj.CopyComplete
 D:\A22063\Sneker\obj\Debug\Sneker.dll
 D:\A22063\Sneker\obj\Debug\Sneker.pdb
-D:\A22063\Sneker\bin\EntityFramework.dll
-D:\A22063\Sneker\bin\EntityFramework.SqlServer.dll
-D:\A22063\Sneker\bin\EntityFramework.xml
-D:\A22063\Sneker\bin\EntityFramework.SqlServer.xml

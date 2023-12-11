@@ -42,9 +42,9 @@
                             </ul>
                         </li>
                         <li>
-                            <a class="s" href="">Shopping Cart <i class="fa fa-shopping-cart"></i>@if (Session["Username"] == null)
+                            <a class="s" href="@Url.Action("Order", "Product")">Shopping Cart <i class="fa fa-shopping-cart"></i>@if (Session["Cart"] == null)
                             {<span class="badge">0</span> }
-                            else {<span class="badge">3</span> }</a>
+                            else {<span class="badge">@Session["Quantity"]</span> }</a>
                         </li>
                     </ul>
                 </div>
@@ -57,12 +57,12 @@
                 <hr />
                 <ul id="nav">
                     <li>
-                        <a class="sub-menu" href="product.php">Shoes</a>
+                        <a class="sub-menu" href="@Url.Action("Shoes", "Product")">Shoes</a>
                         <ul class="subnav">
-                            <li><a href="#fengshui.html">Nike</a></li>
-                            <li><a href="#lotustree.html">Adidas</a></li>
-                            <li><a href="#aquanticplant.html">Puma</a></li>
-                            <li><a href="#convolve.html">Converse</a></li>
+                            <li><a href="@Url.Action("/Shoes/1", "Product")">Nike</a></li>
+                            <li><a href="@Url.Action("/Shoes/2", "Product")">Adidas</a></li>
+                            <li><a href="@Url.Action("/Shoes/3", "Product")">Puma</a></li>
+                            <li><a href="@Url.Action("/Shoes/4", "Product")">Converse</a></li>
                         </ul>
                     </li>
                     <li>
@@ -74,11 +74,12 @@
                             </ul>*@
                     </li>
                     <li><a class="sub-menu" href="@Url.Action("Stories", "Home")">Stores</a></li>
-                    <li><a class="sub-menu" href="contact.php">Service</a></li>
+                    <li><a class="sub-menu" href="@Url.Action("Service", "Home")">Service</a></li>
                 </ul>
             </div>
         </div>
     </div>
+    <div class="scrollTop" onclick="scrollToTop()"></div>
     <div id="content" class="mb-5">
         @RenderBody()
     </div>
@@ -123,13 +124,26 @@
             </div>
             <div class="row mt-2">
                 <div class="col-md-12">
-                    <p class="content--bottom--footer">Copyright &copy; 2023 Sneker: 1 Ly Tu Trong Street, An Cu Ward, Ninh Kieu Dictrict, Can Tho City, VietNam.</p>
+                    <p class="content--bottom--footer">Copyright &copy; 2022 Sneker: 1 Ly Tu Trong Street, An Cu Ward, Ninh Kieu Dictrict, Can Tho City, VietNam.</p>
                 </div>
             </div>
         </div>
     </div>
     <script>
         AOS.init();
+    </script>
+    <script>
+        window.addEventListener('scroll', function () {
+            var scroll = document.querySelector('.scrollTop');
+            scroll.classList.toggle('active', window.scrollY > 500)
+        })
+
+        function scrollToTop() {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            })
+        }
     </script>
 </body>
 </html>

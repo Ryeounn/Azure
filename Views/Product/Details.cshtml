@@ -1,0 +1,68 @@
+﻿@model Sneker.Models.Product
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_LayoutPage1.cshtml";
+}
+<hr />
+<div class="container">
+    <div class="row mb-1">
+        <div class="col-md-12">
+            <a class="navbar--all" href="@Url.Action("Index", "Home")">Home</a> >
+            <a class="navbar--all" href="@Url.Action("Shoes", "Product")">Product</a> >
+            <p class="subnavbar--all">@Model.Productname</p>
+        </div>
+    </div>
+</div>
+<hr />
+
+<div class="container">
+    <div class="row mt-5">
+        <div class="col-md-6">
+            <div class="img-magnifier-container">
+                <img id="myimage" src="@Model.PicturePath@Model.Picture" alt="@Model.Productname">
+            </div>
+        </div>
+        <div class="col-md-6">
+            <p class="title--details">@Model.Productname - @Model.Productcode</p>
+            <p class="price--details">@Model.Unitprice<sup class="dollar--details">$</sup></p>
+            <p class="title--size--details mt-4">
+                <b>Size: </b>
+            </p>
+            <ul id="list--size" class="list-add list-group account-settings-links">
+                <li><input class="list-group-item list-group-item-action active sizer--details" value="36" readonly data-toggle="list"></li>
+            </ul>
+            <br />
+            <p class="title--size--details mt-4"><b>Quantity: </b></p>
+            <div id="buy--amount">
+                <button class="minus--btn"><i class="fas fa-minus"></i></button>
+                <input type="text" name="ql" id="amount" value="1" maxlength="3">
+                <button class="plus--btn"><i class="fas fa-plus"></i></button>
+            </div>
+            <a href="/Product/AddtoCart/@Model.ProductID" class="btn--dark--model mt-5 btn--buy--details">Buy now for @Model.Unitprice$<br /><span class="title--btn--buy">Order home delivery</span></a>
+            <p class="title--store mt-4">There is 1 store that has this product in stock</p>
+            <p class="title--store"><i class="fas fa-map-marker-alt icon--branch"></i>Ly Tu Trong Branch:</p>
+            <p class="address--store">1 Ly Tu Trong Street, Ninh Kieu District, Can Tho City</p>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <ul id="list--size" class="list-add list-group account-settings-links">
+                <li><a href="" class="list-group-item list-group-item-action text--tran active" data-toggle="list">Product Description</a></li>
+                <li><a href="" class="list-group-item list-group-item-action text--tran" data-toggle="list">After-Sales Service</a></li>
+                <li><a href="" class="list-group-item list-group-item-action text--tran" id="choosing" data-toggle="list">Instructions for choosing size</a></li>
+            </ul>
+        </div>
+    </div>
+    <div class="row">
+        <div id="ajax--load--details" class="col-md-12">
+
+        </div>
+    </div>
+</div>
+<script>
+    $('#choosing').click(function () {
+        $('#ajax--load--details').load('/Product/Choosing');
+    })
+</script>
+<script src="~/Content/Script/Magnifier.js"></script>
+<script src="~/Content/Script/Increase.js"></script>

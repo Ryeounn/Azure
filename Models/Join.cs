@@ -19,8 +19,8 @@ namespace Sneker.Models
         public int Discount { get; set; }
         public int CateID { get; set; }
         public string CateName { get; set; }
-        public string CatePicture { get; set;}
-        public string CatePicturePath { get; set; }
+        public string Picture { get; set;}
+        public string PicturePath { get; set; }
 
     }
 
@@ -32,7 +32,7 @@ namespace Sneker.Models
             var model = (from a in db.Products
                          let cate = a.Category
                          let size = a.Sizer
-                         where a.ProductID == 4 || a.ProductID == 10 || a.ProductID == 12 || a.ProductID == 20
+                         where a.ProductID == 10 || a.ProductID == 13 || a.ProductID == 15 || a.ProductID == 16
                          select new Join()
                          {
                              Id = a.ProductID,
@@ -45,8 +45,8 @@ namespace Sneker.Models
                              Discount = (int)a.Discount,
                              CateID = cate.CaterogiesID,
                              CateName = cate.Caterogyname,
-                             CatePicture = a.Picture,
-                             CatePicturePath = a.PicturePath
+                             Picture = a.Picture,
+                             PicturePath = a.PicturePath
                          }).ToList();
             return model;
         }
@@ -54,22 +54,23 @@ namespace Sneker.Models
         public List<Join> Adidas()
         {
             var model = (from a in db.Products
-                         join b in db.Categories on a.CaterogyID equals b.CaterogiesID
-                         where a.ProductID == 13 || a.ProductID == 14 || a.ProductID == 15 || a.ProductID == 22
+                         let cate = a.Category
+                         let size = a.Sizer
+                         where a.ProductID == 1 || a.ProductID == 3 || a.ProductID == 5 || a.ProductID == 8
                          select new Join()
                          {
                              Id = a.ProductID,
                              Code = a.Productcode,
                              Name = a.Productname,
-                             Description = b.Description,
+                             Description = cate.Description,
                              Quantity = (int)a.Quantityperunit,
                              UnitinStock = (int)a.Unitinstock,
                              Unitpirce = (int)a.Unitprice,
                              Discount = (int)a.Discount,
-                             CateID = b.CaterogiesID,
-                             CateName = b.Caterogyname,
-                             CatePicture = a.Picture,
-                             CatePicturePath = a.PicturePath
+                             CateID = cate.CaterogiesID,
+                             CateName = cate.Caterogyname,
+                             Picture = a.Picture,
+                             PicturePath = a.PicturePath
                          }).ToList();
             return model;
         }
@@ -77,22 +78,23 @@ namespace Sneker.Models
         public List<Join> Puma()
         {
             var model = (from a in db.Products
-                         join b in db.Categories on a.CaterogyID equals b.CaterogiesID
-                         where a.ProductID == 13 || a.ProductID == 14 || a.ProductID == 15 || a.ProductID == 22
+                         let cate = a.Category
+                         let size = a.Sizer
+                         where a.ProductID == 17 || a.ProductID == 21 || a.ProductID == 22 || a.ProductID == 24
                          select new Join()
                          {
                              Id = a.ProductID,
                              Code = a.Productcode,
                              Name = a.Productname,
-                             Description = b.Description,
+                             Description = cate.Description,
                              Quantity = (int)a.Quantityperunit,
                              UnitinStock = (int)a.Unitinstock,
                              Unitpirce = (int)a.Unitprice,
                              Discount = (int)a.Discount,
-                             CateID = b.CaterogiesID,
-                             CateName = b.Caterogyname,
-                             CatePicture = a.Picture,
-                             CatePicturePath = a.PicturePath
+                             CateID = cate.CaterogiesID,
+                             CateName = cate.Caterogyname,
+                             Picture = a.Picture,
+                             PicturePath = a.PicturePath
                          }).ToList();
             return model;
         }
@@ -100,22 +102,23 @@ namespace Sneker.Models
         public List<Join> Converse()
         {
             var model = (from a in db.Products
-                         join b in db.Categories on a.CaterogyID equals b.CaterogiesID
-                         where a.ProductID == 13 || a.ProductID == 14 || a.ProductID == 15 || a.ProductID == 22
+                         let cate = a.Category
+                         let size = a.Sizer
+                         where a.ProductID == 25 || a.ProductID == 28 || a.ProductID == 30 || a.ProductID == 32
                          select new Join()
                          {
                              Id = a.ProductID,
                              Code = a.Productcode,
                              Name = a.Productname,
-                             Description = b.Description,
+                             Description = cate.Description,
                              Quantity = (int)a.Quantityperunit,
                              UnitinStock = (int)a.Unitinstock,
                              Unitpirce = (int)a.Unitprice,
                              Discount = (int)a.Discount,
-                             CateID = b.CaterogiesID,
-                             CateName = b.Caterogyname,
-                             CatePicture = a.Picture,
-                             CatePicturePath = a.PicturePath
+                             CateID = cate.CaterogiesID,
+                             CateName = cate.Caterogyname,
+                             Picture = a.Picture,
+                             PicturePath = a.PicturePath
                          }).ToList();
             return model;
         }

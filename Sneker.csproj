@@ -97,15 +97,58 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Areas\Admin\Css\StyleAdmin.css" />
     <Content Include="Content\Css\Style.css" />
+    <Content Include="Content\Image\Details\details.png" />
+    <Content Include="Content\Image\Details\details2.png" />
+    <Content Include="Content\Image\Details\details3.png" />
+    <Content Include="Content\Image\Details\details4.png" />
     <Content Include="Content\Image\faker.jpg" />
     <Content Include="Content\Image\Home\france.png" />
     <Content Include="Content\Image\Home\logo-brand.png" />
     <Content Include="Content\Image\Home\sneker.png" />
     <Content Include="Content\Image\Home\sneker2.png" />
     <Content Include="Content\Image\Home\sneker3.png" />
+    <Content Include="Content\Image\Instruction.png" />
+    <Content Include="Content\Image\product.png" />
+    <Content Include="Content\Image\Product\adidas.png" />
+    <Content Include="Content\Image\Product\adidas1.png" />
+    <Content Include="Content\Image\Product\adidas2.png" />
+    <Content Include="Content\Image\Product\adidas3.png" />
+    <Content Include="Content\Image\Product\adidas4.png" />
+    <Content Include="Content\Image\Product\adidas5.png" />
+    <Content Include="Content\Image\Product\adidas6.png" />
+    <Content Include="Content\Image\Product\adidas7.png" />
+    <Content Include="Content\Image\Product\converse.png" />
+    <Content Include="Content\Image\Product\converse1.png" />
+    <Content Include="Content\Image\Product\converse2.png" />
+    <Content Include="Content\Image\Product\converse3.png" />
+    <Content Include="Content\Image\Product\converse4.png" />
+    <Content Include="Content\Image\Product\converse5.png" />
+    <Content Include="Content\Image\Product\converse6.png" />
+    <Content Include="Content\Image\Product\converse7.png" />
+    <Content Include="Content\Image\Product\nike.png" />
+    <Content Include="Content\Image\Product\nike1.png" />
+    <Content Include="Content\Image\Product\nike2.png" />
+    <Content Include="Content\Image\Product\nike3.png" />
+    <Content Include="Content\Image\Product\nike4.png" />
+    <Content Include="Content\Image\Product\nike5.png" />
+    <Content Include="Content\Image\Product\nike6.png" />
+    <Content Include="Content\Image\Product\nike7.png" />
+    <Content Include="Content\Image\Product\puma.png" />
+    <Content Include="Content\Image\Product\puma1.png" />
+    <Content Include="Content\Image\Product\puma2.png" />
+    <Content Include="Content\Image\Product\puma3.png" />
+    <Content Include="Content\Image\Product\puma4.png" />
+    <Content Include="Content\Image\Product\puma5.png" />
+    <Content Include="Content\Image\Product\puma6.png" />
+    <Content Include="Content\Image\Product\puma7.png" />
+    <Content Include="Content\Image\service.png" />
     <Content Include="Content\Image\Stories\stories.jpg" />
+    <Content Include="Content\Image\upicon.png" />
+    <Content Include="Content\Script\Increase.js" />
     <Content Include="Content\Script\lazyload.js" />
+    <Content Include="Content\Script\Magnifier.js" />
     <Content Include="Global.asax" />
     <Content Include="Models\SnekerDBContext.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
@@ -121,12 +164,16 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
+    <Compile Include="Models\Cart.cs" />
+    <Compile Include="Models\CartView.cs" />
     <Compile Include="Models\Category.cs">
       <DependentUpon>SnekerDBContext.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Contact.cs">
       <DependentUpon>SnekerDBContext.tt</DependentUpon>
     </Compile>
+    <Compile Include="Controllers\ProductController.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Models\Customer.cs">
@@ -138,7 +185,6 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Models\Functions.cs" />
     <Compile Include="Models\Join.cs" />
     <Compile Include="Models\Order.cs">
       <DependentUpon>SnekerDBContext.tt</DependentUpon>
@@ -168,6 +214,8 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\web.config" />
+    <Content Include="Areas\Admin\Views\web.config" />
+    <Content Include="Areas\Admin\Views\Shared\_LayoutAdminPage1.cshtml" />
     <None Include="packages.config" />
     <Content Include="Views\Shared\_LayoutPage1.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
@@ -178,6 +226,8 @@
     <Content Include="Views\Account\Register.cshtml" />
     <Content Include="Views\Home\Instruction.cshtml" />
     <Content Include="Views\Account\Change.cshtml" />
+    <Content Include="Views\Product\Shoes.cshtml" />
+    <Content Include="Views\Home\Service.cshtml" />
     <EntityDeploy Include="Models\SnekerDBContext.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>SnekerDBContext.Designer.cs</LastGenOutput>
@@ -185,6 +235,11 @@
     <Content Include="Models\SnekerDBContext.edmx.diagram">
       <DependentUpon>SnekerDBContext.edmx</DependentUpon>
     </Content>
+    <Content Include="Views\Product\Search.cshtml" />
+    <Content Include="Views\Product\Details.cshtml" />
+    <Content Include="Views\Product\Choosing.cshtml" />
+    <Content Include="Views\Product\Service.cshtml" />
+    <Content Include="Views\Product\Order.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -194,6 +249,9 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Areas\Admin\Controllers\" />
+    <Folder Include="Areas\Admin\Data\" />
+    <Folder Include="Content\Image\Service\" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />

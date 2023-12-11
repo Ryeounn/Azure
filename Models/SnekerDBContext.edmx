@@ -109,6 +109,12 @@ warning 6013: The table/view 'Sneker.dbo.Orderdetails' does not have a primary k
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <!--Errors Found During Generation:
+error 6004: The table 'Sneker.dbo.Orderdetails' is referenced by a relationship, but cannot be found.
+        <Association Name="fk_data_id_orderdetails" />-->
+        <!--Errors Found During Generation:
+error 6004: The table 'Sneker.dbo.Orderdetails' is referenced by a relationship, but cannot be found.
+        <Association Name="fk_data_id_orderdetailss" />-->
         <Association Name="fk_data_id_orders">
           <End Role="Customer" Type="Self.Customer" Multiplicity="0..1" />
           <End Role="Orders" Type="Self.Orders" Multiplicity="*" />
@@ -133,12 +139,6 @@ warning 6013: The table/view 'Sneker.dbo.Orderdetails' does not have a primary k
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <!--Errors Found During Generation:
-error 6004: The table 'Sneker.dbo.Orderdetails' is referenced by a relationship, but cannot be found.
-        <Association Name="fk_data_id_rderdetails" />-->
-        <!--Errors Found During Generation:
-error 6004: The table 'Sneker.dbo.Orderdetails' is referenced by a relationship, but cannot be found.
-        <Association Name="fk_data_id_rderdetailss" />-->
         <Association Name="fk_data_id_sizer">
           <End Role="Sizer" Type="Self.Sizer" Multiplicity="0..1" />
           <End Role="Product" Type="Self.Product" Multiplicity="*" />

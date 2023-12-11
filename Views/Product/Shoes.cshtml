@@ -1,0 +1,65 @@
+﻿
+@{
+    ViewBag.Title = "Shoes";
+    Layout = "~/Views/Shared/_LayoutPage1.cshtml";
+}
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-12">
+            <img src="~/Content/Image/product.png" width="100%" height="360" />
+        </div>
+    </div>
+</div>
+<div class="container">
+    <div class="row">
+        <div class="col-md-3">
+            <p class="title--product mt-5"><a href="" id="cate" data-toggle="list">Caterogy</a></p>
+            <ul id="list--caterogy">
+                <li class="mt-2"><a href="" id="nike" data-toggle="list" >Nike</a></li>
+                <li class="mt-2"><a href="" id="puma" data-toggle="list" >Puma</a></li>
+                <li class="mt-2"><a href="" id="adidas" data-toggle="list">Adidas</a></li>
+                <li class="mt-2"><a href="" id="converse" data-toggle="list">Converse</a></li>
+            </ul>
+        </div>
+        <div class="col-md-9 mt-2">
+            <div class="row" id="ajax--load--product">
+                @foreach (var i in Model)
+                {
+                    string path = i.PicturePath + i.Picture;
+                    <div class="col-md-4 mt-5">
+                        <div class="box--home" data-aos="fade-up" data-aos-duration="1000">
+                            <img src="@path" class="box--img--home" />
+                            <p class="box--brand mt-3">@i.Quantityperunit</p>
+                            <p class="box--name--home">@i.Productname</p>
+                            <p class="box--price--home">@i.SizeID</p>
+                            <a class="over--lay" href="@Url.Action("Details/"+ @i.ProductID,"Product")">Select</a>
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    $('#nike').click(function () {
+        $('#ajax--load--product').load('/Product/Search/1');
+    })
+
+    $('#puma').click(function () {
+        $('#ajax--load--product').load('/Product/Search/3');
+    })
+
+    $('#adidas').click(function () {
+        $('#ajax--load--product').load('/Product/Search/2');
+    })
+
+    $('#converse').click(function () {
+        $('#ajax--load--product').load('/Product/Search/4');
+    })
+
+    $('#cate').click(function () {
+        $('#ajax--load--product').load('/Product/Search/0');
+    })
+</script>
+

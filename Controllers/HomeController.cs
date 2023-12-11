@@ -34,5 +34,10 @@ namespace Sneker.Controllers
         {
             return View();
         }
+
+        public ActionResult Service()
+        {
+            return View();
+        }
     }
 }

@@ -51,20 +51,21 @@
     <div class="row mt-5">
         @foreach(var item in Model.Nike)
         {
+            string path = item.PicturePath + item.Picture;
         <div class="col-md-3">
             <div class="box--home" data-aos="fade-up" data-aos-duration="1000">
-                <img lazy-src="~/Content/Image/Home/sneker3.png" src="" class="box--img--home" />
+                <img lazy-src="@path" src="" class="box--img--home" />
                 <p class="box--brand mt-3">@item.CateName</p>
                 <p class="box--name--home">@item.Name</p>
-                <p class="box--price--home">@item.Unitpirce</p>
-                <a class="over--lay" href="">Select</a>
+                <p class="box--price--home">@item.Unitpirce$</p>
+                <a class="over--lay" href="@Url.Action("Details/" + @item.Id, "Product")">Select</a>
             </div>
         </div>
         }
     </div>
     <div class="row mt-5">
         <div class="col-md-12">
-            <a class="btn btn--dark--model btn--dark--home" href="">See all . Nike</a>
+            <a class="btn btn--dark--model btn--dark--home" href="@Url.Action("Shoes/1","Product")">See all . Nike</a>
         </div>
     </div>
     @* Adidas *@
@@ -77,20 +78,21 @@
     <div class="row mt-5">
         @foreach (var items in Model.Adidas)
         {
+            string path = items.PicturePath + items.Picture;
             <div class="col-md-3">
                 <div class="box--home" data-aos="fade-up" data-aos-duration="1000">
-                    <img src="" class="box--img--home" />
+                    <img lazy-src="@path" src="" class="box--img--home" />
                     <p class="box--brand mt-3">@items.CateName</p>
                     <p class="box--name--home">@items.Name</p>
                     <p class="box--price--home">@items.Unitpirce$</p>
-                    <a class="over--lay" href="">Select</a>
+                    <a class="over--lay" href="@Url.Action("Details/" + @items.Id, "Product")">Select</a>
                 </div>
             </div>
         }
     </div>
     <div class="row mt-5">
         <div class="col-md-12">
-            <a class="btn btn--dark--model btn--dark--home" href="">See all . Adidas</a>
+            <a class="btn btn--dark--model btn--dark--home" href="@Url.Action("Shoes/2","Product")">See all . Adidas</a>
         </div>
     </div>
     @* Puma *@
@@ -103,20 +105,21 @@
     <div class="row mt-5">
         @foreach (var i in Model.Puma)
         {
+            string path = i.PicturePath + i.Picture;
             <div class="col-md-3">
                 <div class="box--home" data-aos="fade-up" data-aos-duration="1000">
-                    <img src="" class="box--img--home" />
+                    <img lazy-src="@path" src="" class="box--img--home" />
                     <p class="box--brand mt-3">@i.CateName</p>
                     <p class="box--name--home">@i.Name</p>
-                    <p class="box--price--home">@i.Unitpirce VND</p>
-                    <a class="over--lay" href="">Select</a>
+                    <p class="box--price--home">@i.Unitpirce$</p>
+                    <a class="over--lay" href="@Url.Action("Details/" + @i.Id, "Product")">Select</a>
                 </div>
             </div>
         }
     </div>
     <div class="row mt-5">
         <div class="col-md-12">
-            <a class="btn btn--dark--model btn--dark--home" href="">See all . Puma</a>
+            <a class="btn btn--dark--model btn--dark--home" href="@Url.Action("Shoes/3","Product")">See all . Puma</a>
         </div>
     </div>
     @* Converse *@
@@ -129,20 +132,21 @@
     <div class="row mt-5">
         @foreach (var c in Model.Converse)
         {
+            string path = c.PicturePath + c.Picture;
             <div class="col-md-3">
                 <div class="box--home" data-aos="fade-up" data-aos-duration="1000">
-                    <img src="" class="box--img--home" />
+                    <img lazy-src="@path" src="" class="box--img--home" />
                     <p class="box--brand mt-3">@c.CateName</p>
                     <p class="box--name--home">@c.Name</p>
-                    <p class="box--price--home">@c.Unitpirce Won</p>
-                    <a class="over--lay" href="">Select</a>
+                    <p class="box--price--home">@c.Unitpirce$</p>
+                    <a class="over--lay" href="@Url.Action("Details/" + @c.Id, "Product")">Select</a>
                 </div>
             </div>
         }
     </div>
     <div class="row mt-5">
         <div class="col-md-12">
-            <a class="btn btn--dark--model btn--dark--home" href="">See all . Converse</a>
+            <a class="btn btn--dark--model btn--dark--home" href="@Url.Action("Shoes/4","Product")">See all . Converse</a>
         </div>
     </div>
 </div>
