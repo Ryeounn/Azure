@@ -42,9 +42,7 @@
                             </ul>
                         </li>
                         <li>
-                            <a class="s" href="@Url.Action("Order", "Product")">Shopping Cart <i class="fa fa-shopping-cart"></i>@if (Session["Cart"] == null)
-                            {<span class="badge">0</span> }
-                            else {<span class="badge">@Session["Quantity"]</span> }</a>
+                            <a class="s" href="@Url.Action("Order", "Product")">Shopping Cart <i class="fa fa-shopping-cart"></i>@Html.Action("BagCart","Product")</a>
                         </li>
                     </ul>
                 </div>

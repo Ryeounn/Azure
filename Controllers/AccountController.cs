@@ -42,7 +42,7 @@ namespace Sneker.Controllers
                     Session["Avatar"] = customerdata.FirstOrDefault().Avatar;
                     Session["Password"] = f_password;
                     Session["Username"] = customerdata.FirstOrDefault().Username;
-                    return RedirectToAction("Index", "Home");
+                    return RedirectToAction("Index", "Home", new {area = ""});
                 }
                 else if(employeedata.Count() > 0)
                 {
@@ -55,10 +55,11 @@ namespace Sneker.Controllers
                     Session["AddressAd"] = employeedata.FirstOrDefault().Address;
                     Session["Birthday"] = employeedata.FirstOrDefault().Birthday;
                     Session["Photo"] = employeedata.FirstOrDefault().Photo;
+                    Session["PhotoPath"] = employeedata.FirstOrDefault().PhotoPath;
                     Session["PasswordAd"] = f_password;
                     Session["UsernameAd"] = employeedata.FirstOrDefault().Username;
                     //return View("~/Areas/Admin/Views/HomeAdmin/Index.cshtml");
-                    return RedirectToAction("Index", "Home", new { area = "Admin" });
+                    return RedirectToAction("Index", "HomeAdmin", new { area = "Admin" });
                 }
                 else {
                     ViewBag.error = "Login failed";

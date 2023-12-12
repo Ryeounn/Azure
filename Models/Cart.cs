@@ -83,5 +83,15 @@ namespace Sneker.Models
         {
             items.RemoveAll(s => s.product.ProductID == id);
         }
+
+        public int Total_Quantity_in_Cart()
+        {
+            return (int)items.Sum(s => s.quantity);
+        }
+
+        public void ClearCart()
+        {
+            items.Clear();
+        }
     }
 }

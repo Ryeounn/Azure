@@ -98,6 +98,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Areas\Admin\Css\StyleAdmin.css" />
+    <Content Include="Areas\Admin\Script\Layout.js" />
     <Content Include="Content\Css\Style.css" />
     <Content Include="Content\Image\Details\details.png" />
     <Content Include="Content\Image\Details\details2.png" />
@@ -165,6 +166,7 @@
   <ItemGroup>
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
+    <Compile Include="Areas\Admin\Controllers\HomeAdminController.cs" />
     <Compile Include="Models\Cart.cs" />
     <Compile Include="Models\CartView.cs" />
     <Compile Include="Models\Category.cs">
@@ -216,6 +218,8 @@
     <Content Include="Views\web.config" />
     <Content Include="Areas\Admin\Views\web.config" />
     <Content Include="Areas\Admin\Views\Shared\_LayoutAdminPage1.cshtml" />
+    <Content Include="Areas\Admin\Views\HomeAdmin\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\HomeAdmin\Avatar.cshtml" />
     <None Include="packages.config" />
     <Content Include="Views\Shared\_LayoutPage1.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
@@ -240,6 +244,9 @@
     <Content Include="Views\Product\Choosing.cshtml" />
     <Content Include="Views\Product\Service.cshtml" />
     <Content Include="Views\Product\Order.cshtml" />
+    <Content Include="Views\Product\BagCart.cshtml" />
+    <Content Include="Views\Product\CheckOut.cshtml" />
+    <Content Include="Views\Product\BagCartTotal.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -249,7 +256,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Areas\Admin\Controllers\" />
     <Folder Include="Areas\Admin\Data\" />
     <Folder Include="Content\Image\Service\" />
   </ItemGroup>

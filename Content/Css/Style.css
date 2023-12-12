@@ -4,6 +4,9 @@
     box-sizing: border-box;
 }
 
+.border--l{
+    border-left: 1px solid #ccc;
+}
 /* Layout */
 .top--header {
     height: 150px;
@@ -838,4 +841,129 @@ sup{
     color: #fff;
     background-color: #1c1c1c;
     transition: .5s;
+}
+
+/* CheckOut */
+.box--checkout{
+    width: 90%;
+    height: 500px;
+    background-color: #fff;
+}
+
+.img--checkout{
+    width: 250px;
+    height: 250px;
+    margin-left: 10%;
+}
+
+.infor--checkout{
+    font-weight: 500;
+    display: inline-block;
+}
+
+.login--checkout{
+    display: inline-block;
+    float: right;
+}
+
+.login--checkout i{
+    margin-right: .5em;
+}
+
+.login--checkout a{
+    color: #1c1c1c;
+}
+
+.login--checkout a:hover{
+    color: #1c1c1c;
+    text-decoration: none;
+}
+
+.box--checkout .form-control:focus {
+    border: 2px solid #1c1c1c;
+    box-shadow: none;
+}
+
+.total--checkout{
+    font-weight: 500;
+    font-size: 24px;
+}
+
+.img--rw{
+    position: relative;
+    width: 50px;
+    height: 50px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+}
+
+.posision {
+    position: relative;
+    margin-left: 2em;
+}
+
+.badge--checkout{
+    border-radius: 50% !important;
+}
+
+.name--checkout{
+    text-transform: uppercase;
+    margin: -1em 0 0 1em;
+    font-weight: 500;
+}
+
+.code--checkout{
+    margin: -2.5em 0 0 6.2em;
+    color: #777;
+    opacity: .5;
+}
+
+.discount--checkout {
+    font-size: 14px;
+    margin: -1em 0 0 -4.4em;
+    color: #777;
+    opacity: .6;
+}
+
+.price--checkout{
+    margin: 1em 0 0 7em;
+}
+
+.provisional--checkout{
+    display: inline-block;
+}
+
+.float--right{
+    float: right;
+}
+
+.total--bill{
+    font-size: 24px;
+}
+
+.btn--checkout{
+    text-transform: uppercase;
+    background-color: #1c1c1c;
+    color: #fff;
+    padding: 10px 20px;
+    border-radius: 5px;
+    float: right;
+    margin-top: .3em;
+}
+
+.hidden{
+    opacity: 0;
+}
+
+.backto--checkout{
+    color: #1c1c1c;
+}
+
+.backto--checkout:hover{
+    text-decoration: none;
+    color: #916841;
+}
+
+.icon--checkout{
+    padding-top: 20px;
 }

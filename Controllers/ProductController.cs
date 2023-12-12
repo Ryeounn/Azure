@@ -109,5 +109,36 @@ namespace Sneker.Controllers
             return RedirectToAction("Order", "Product");
         }
 
+        public PartialViewResult BagCart()
+        {
+            int total_item = 0;
+            Cart cart = Session["Cart"] as Cart;
+            if(cart != null)
+                total_item = cart.Total_Quantity_in_Cart();
+                ViewBag.QuantityCart = total_item;
+                return PartialView("BagCart");
+        }
+
+        public PartialViewResult BagCartTotal()
+        {
+            int total_item = 0;
+            Cart cart = Session["Cart"] as Cart;
+            if (cart != null)
+                total_item = cart.Total_Quantity_in_Cart();
+            ViewBag.QuantityCart = total_item;
+            return PartialView("BagCartTotal");
+        }
+
+        public ActionResult CheckOut()
+        {
+            if (Session["Cart"] == null)
+            {
+                return RedirectToAction("Order", "Product");
+            }
+            Cart cart = Session["Cart"] as Cart;
+
+            return View(cart);
+        }
+
     }
 }

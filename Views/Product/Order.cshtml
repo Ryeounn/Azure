@@ -23,7 +23,7 @@
             </div>
         </div>
 
-        <form action="" method="post">
+        <form action="/Product/CheckOut" method="post">
             <div class="row">
                 <div class="col-md-9 mt-4">
                     @foreach (var item in Model.Items)
@@ -78,7 +78,7 @@
                     </div>
                     <div class="row">
                         <div class="col-md-12">
-                            <button type="" class="btn--dark--model btn--pay--order">Pay Now</button>
+                            <button type="submit" class="btn--dark--model btn--pay--order">Pay Now</button>
                         </div>
                         <div class="col-md-12 mt-2">
                             <a href="@Url.Action("Shoes/0","Product")" class="btn--continue--order">Continue shopping</a>
