@@ -30,7 +30,7 @@
           <Property Name="Name" Type="varchar" MaxLength="255" />
           <Property Name="Email" Type="varchar" MaxLength="255" />
           <Property Name="Phone" Type="varchar" MaxLength="255" />
-          <Property Name="DateofBirth" Type="date" />
+          <Property Name="DateofBirth" Type="varchar" MaxLength="255" />
           <Property Name="Address" Type="varchar" MaxLength="255" />
           <Property Name="Avatar" Type="varchar" MaxLength="255" />
           <Property Name="AvatarPath" Type="varchar" MaxLength="255" />
@@ -46,30 +46,35 @@
           <Property Name="Lastname" Type="varchar" MaxLength="255" />
           <Property Name="Email" Type="varchar" MaxLength="255" />
           <Property Name="Phone" Type="varchar" MaxLength="255" />
-          <Property Name="Birthday" Type="date" />
+          <Property Name="Birthday" Type="varchar" MaxLength="255" />
           <Property Name="Address" Type="varchar" MaxLength="255" />
           <Property Name="Photo" Type="varchar" MaxLength="255" />
           <Property Name="PhotoPath" Type="varchar" MaxLength="255" />
         </EntityType>
-        <!--Errors Found During Generation:
-warning 6013: The table/view 'Sneker.dbo.Orderdetails' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
-        <EntityType Name="Orderdetails">
+        <EntityType Name="OrderDetails">
+          <Key>
+            <PropertyRef Name="OrderDetailsID" />
+          </Key>
+          <Property Name="OrderDetailsID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Quantity" Type="int" />
           <Property Name="Unitprice" Type="money" />
           <Property Name="Discount" Type="int" />
           <Property Name="OrderID" Type="int" />
           <Property Name="ProductID" Type="int" />
-        </EntityType>-->
+        </EntityType>
         <EntityType Name="Orders">
           <Key>
             <PropertyRef Name="OrderID" />
           </Key>
           <Property Name="OrderID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="Orderdate" Type="date" />
+          <Property Name="Orderdate" Type="varchar" MaxLength="255" />
+          <Property Name="Email" Type="varchar" MaxLength="255" />
+          <Property Name="Phone" Type="varchar" MaxLength="255" />
           <Property Name="Shipname" Type="varchar" MaxLength="255" />
           <Property Name="Shipaddress" Type="varchar" MaxLength="255" />
           <Property Name="Shipcity" Type="varchar" MaxLength="255" />
           <Property Name="Shipcountry" Type="varchar" MaxLength="255" />
+          <Property Name="Note" Type="varchar" MaxLength="255" />
           <Property Name="Status" Type="varchar" MaxLength="255" />
           <Property Name="CustomerID" Type="int" />
           <Property Name="EmployeeID" Type="int" />
@@ -87,15 +92,8 @@ warning 6013: The table/view 'Sneker.dbo.Orderdetails' does not have a primary k
           <Property Name="Discount" Type="int" />
           <Property Name="Picture" Type="varchar" MaxLength="255" />
           <Property Name="PicturePath" Type="varchar" MaxLength="255" />
-          <Property Name="SizeID" Type="int" />
+          <Property Name="Size" Type="int" />
           <Property Name="CaterogyID" Type="int" />
-        </EntityType>
-        <EntityType Name="Sizer">
-          <Key>
-            <PropertyRef Name="SizeID" />
-          </Key>
-          <Property Name="SizeID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="Sizes" Type="int" />
         </EntityType>
         <Association Name="fk_data_id_caterogies">
           <End Role="Categories" Type="Self.Categories" Multiplicity="0..1" />
@@ -109,12 +107,30 @@ warning 6013: The table/view 'Sneker.dbo.Orderdetails' does not have a primary k
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <!--Errors Found During Generation:
-error 6004: The table 'Sneker.dbo.Orderdetails' is referenced by a relationship, but cannot be found.
-        <Association Name="fk_data_id_orderdetails" />-->
-        <!--Errors Found During Generation:
-error 6004: The table 'Sneker.dbo.Orderdetails' is referenced by a relationship, but cannot be found.
-        <Association Name="fk_data_id_orderdetailss" />-->
+        <Association Name="fk_data_id_orderdetails">
+          <End Role="Orders" Type="Self.Orders" Multiplicity="0..1" />
+          <End Role="OrderDetails" Type="Self.OrderDetails" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Orders">
+              <PropertyRef Name="OrderID" />
+            </Principal>
+            <Dependent Role="OrderDetails">
+              <PropertyRef Name="OrderID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_data_id_orderdetailss">
+          <End Role="Product" Type="Self.Product" Multiplicity="0..1" />
+          <End Role="OrderDetails" Type="Self.OrderDetails" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Product">
+              <PropertyRef Name="ProductID" />
+            </Principal>
+            <Dependent Role="OrderDetails">
+              <PropertyRef Name="ProductID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="fk_data_id_orders">
           <End Role="Customer" Type="Self.Customer" Multiplicity="0..1" />
           <End Role="Orders" Type="Self.Orders" Multiplicity="*" />
@@ -139,29 +155,25 @@ error 6004: The table 'Sneker.dbo.Orderdetails' is referenced by a relationship,
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="fk_data_id_sizer">
-          <End Role="Sizer" Type="Self.Sizer" Multiplicity="0..1" />
-          <End Role="Product" Type="Self.Product" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Sizer">
-              <PropertyRef Name="SizeID" />
-            </Principal>
-            <Dependent Role="Product">
-              <PropertyRef Name="SizeID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <EntityContainer Name="SnekerModelStoreContainer">
           <EntitySet Name="Categories" EntityType="Self.Categories" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Contact" EntityType="Self.Contact" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Customer" EntityType="Self.Customer" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Employee" EntityType="Self.Employee" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="OrderDetails" EntityType="Self.OrderDetails" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Orders" EntityType="Self.Orders" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Product" EntityType="Self.Product" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="Sizer" EntityType="Self.Sizer" Schema="dbo" store:Type="Tables" />
           <AssociationSet Name="fk_data_id_caterogies" Association="Self.fk_data_id_caterogies">
             <End Role="Categories" EntitySet="Categories" />
             <End Role="Product" EntitySet="Product" />
+          </AssociationSet>
+          <AssociationSet Name="fk_data_id_orderdetails" Association="Self.fk_data_id_orderdetails">
+            <End Role="Orders" EntitySet="Orders" />
+            <End Role="OrderDetails" EntitySet="OrderDetails" />
+          </AssociationSet>
+          <AssociationSet Name="fk_data_id_orderdetailss" Association="Self.fk_data_id_orderdetailss">
+            <End Role="Product" EntitySet="Product" />
+            <End Role="OrderDetails" EntitySet="OrderDetails" />
           </AssociationSet>
           <AssociationSet Name="fk_data_id_orders" Association="Self.fk_data_id_orders">
             <End Role="Customer" EntitySet="Customer" />
@@ -170,10 +182,6 @@ error 6004: The table 'Sneker.dbo.Orderdetails' is referenced by a relationship,
           <AssociationSet Name="fk_data_id_orderss" Association="Self.fk_data_id_orderss">
             <End Role="Employee" EntitySet="Employee" />
             <End Role="Orders" EntitySet="Orders" />
-          </AssociationSet>
-          <AssociationSet Name="fk_data_id_sizer" Association="Self.fk_data_id_sizer">
-            <End Role="Sizer" EntitySet="Sizer" />
-            <End Role="Product" EntitySet="Product" />
           </AssociationSet>
         </EntityContainer>
       </Schema>
@@ -207,7 +215,7 @@ error 6004: The table 'Sneker.dbo.Orderdetails' is referenced by a relationship,
           <Property Name="Name" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
           <Property Name="Email" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
           <Property Name="Phone" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
-          <Property Name="DateofBirth" Type="DateTime" Precision="0" />
+          <Property Name="DateofBirth" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
           <Property Name="Address" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
           <Property Name="Avatar" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
           <Property Name="AvatarPath" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
@@ -224,27 +232,44 @@ error 6004: The table 'Sneker.dbo.Orderdetails' is referenced by a relationship,
           <Property Name="Lastname" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
           <Property Name="Email" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
           <Property Name="Phone" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
-          <Property Name="Birthday" Type="DateTime" Precision="0" />
+          <Property Name="Birthday" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
           <Property Name="Address" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
           <Property Name="Photo" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
           <Property Name="PhotoPath" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="Orders" Relationship="Self.fk_data_id_orderss" FromRole="Employee" ToRole="Orders" />
+        </EntityType>
+        <EntityType Name="OrderDetail">
+          <Key>
+            <PropertyRef Name="OrderDetailsID" />
+          </Key>
+          <Property Name="OrderDetailsID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Quantity" Type="Int32" />
+          <Property Name="Unitprice" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="Discount" Type="Int32" />
+          <Property Name="OrderID" Type="Int32" />
+          <Property Name="ProductID" Type="Int32" />
+          <NavigationProperty Name="Order" Relationship="Self.fk_data_id_orderdetails" FromRole="OrderDetails" ToRole="Orders" />
+          <NavigationProperty Name="Product" Relationship="Self.fk_data_id_orderdetailss" FromRole="OrderDetails" ToRole="Product" />
         </EntityType>
         <EntityType Name="Order">
           <Key>
             <PropertyRef Name="OrderID" />
           </Key>
           <Property Name="OrderID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Orderdate" Type="DateTime" Precision="0" />
+          <Property Name="Orderdate" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="Email" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="Phone" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
           <Property Name="Shipname" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
           <Property Name="Shipaddress" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
           <Property Name="Shipcity" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
           <Property Name="Shipcountry" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="Note" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
           <Property Name="Status" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
           <Property Name="CustomerID" Type="Int32" />
           <Property Name="EmployeeID" Type="Int32" />
           <NavigationProperty Name="Customer" Relationship="Self.fk_data_id_orders" FromRole="Orders" ToRole="Customer" />
           <NavigationProperty Name="Employee" Relationship="Self.fk_data_id_orderss" FromRole="Orders" ToRole="Employee" />
+          <NavigationProperty Name="OrderDetails" Relationship="Self.fk_data_id_orderdetails" FromRole="Orders" ToRole="OrderDetails" />
         </EntityType>
         <EntityType Name="Product">
           <Key>
@@ -259,18 +284,10 @@ error 6004: The table 'Sneker.dbo.Orderdetails' is referenced by a relationship,
           <Property Name="Discount" Type="Int32" />
           <Property Name="Picture" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
           <Property Name="PicturePath" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
-          <Property Name="SizeID" Type="Int32" />
+          <Property Name="Size" Type="Int32" />
           <Property Name="CaterogyID" Type="Int32" />
           <NavigationProperty Name="Category" Relationship="Self.fk_data_id_caterogies" FromRole="Product" ToRole="Categories" />
-          <NavigationProperty Name="Sizer" Relationship="Self.fk_data_id_sizer" FromRole="Product" ToRole="Sizer" />
-        </EntityType>
-        <EntityType Name="Sizer">
-          <Key>
-            <PropertyRef Name="SizeID" />
-          </Key>
-          <Property Name="SizeID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Sizes" Type="Int32" />
-          <NavigationProperty Name="Products" Relationship="Self.fk_data_id_sizer" FromRole="Sizer" ToRole="Product" />
+          <NavigationProperty Name="OrderDetails" Relationship="Self.fk_data_id_orderdetailss" FromRole="Product" ToRole="OrderDetails" />
         </EntityType>
         <Association Name="fk_data_id_caterogies">
           <End Role="Categories" Type="Self.Category" Multiplicity="0..1" />
@@ -308,15 +325,27 @@ error 6004: The table 'Sneker.dbo.Orderdetails' is referenced by a relationship,
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="fk_data_id_sizer">
-          <End Role="Sizer" Type="Self.Sizer" Multiplicity="0..1" />
-          <End Role="Product" Type="Self.Product" Multiplicity="*" />
+        <Association Name="fk_data_id_orderdetails">
+          <End Role="Orders" Type="Self.Order" Multiplicity="0..1" />
+          <End Role="OrderDetails" Type="Self.OrderDetail" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="Sizer">
-              <PropertyRef Name="SizeID" />
+            <Principal Role="Orders">
+              <PropertyRef Name="OrderID" />
             </Principal>
-            <Dependent Role="Product">
-              <PropertyRef Name="SizeID" />
+            <Dependent Role="OrderDetails">
+              <PropertyRef Name="OrderID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_data_id_orderdetailss">
+          <End Role="Product" Type="Self.Product" Multiplicity="0..1" />
+          <End Role="OrderDetails" Type="Self.OrderDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Product">
+              <PropertyRef Name="ProductID" />
+            </Principal>
+            <Dependent Role="OrderDetails">
+              <PropertyRef Name="ProductID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -325,9 +354,9 @@ error 6004: The table 'Sneker.dbo.Orderdetails' is referenced by a relationship,
           <EntitySet Name="Contacts" EntityType="Self.Contact" />
           <EntitySet Name="Customers" EntityType="Self.Customer" />
           <EntitySet Name="Employees" EntityType="Self.Employee" />
+          <EntitySet Name="OrderDetails" EntityType="Self.OrderDetail" />
           <EntitySet Name="Orders" EntityType="Self.Order" />
           <EntitySet Name="Products" EntityType="Self.Product" />
-          <EntitySet Name="Sizers" EntityType="Self.Sizer" />
           <AssociationSet Name="fk_data_id_caterogies" Association="Self.fk_data_id_caterogies">
             <End Role="Categories" EntitySet="Categories" />
             <End Role="Product" EntitySet="Products" />
@@ -340,9 +369,13 @@ error 6004: The table 'Sneker.dbo.Orderdetails' is referenced by a relationship,
             <End Role="Employee" EntitySet="Employees" />
             <End Role="Orders" EntitySet="Orders" />
           </AssociationSet>
-          <AssociationSet Name="fk_data_id_sizer" Association="Self.fk_data_id_sizer">
-            <End Role="Sizer" EntitySet="Sizers" />
+          <AssociationSet Name="fk_data_id_orderdetails" Association="Self.fk_data_id_orderdetails">
+            <End Role="Orders" EntitySet="Orders" />
+            <End Role="OrderDetails" EntitySet="OrderDetails" />
+          </AssociationSet>
+          <AssociationSet Name="fk_data_id_orderdetailss" Association="Self.fk_data_id_orderdetailss">
             <End Role="Product" EntitySet="Products" />
+            <End Role="OrderDetails" EntitySet="OrderDetails" />
           </AssociationSet>
         </EntityContainer>
       </Schema>
@@ -401,15 +434,30 @@ error 6004: The table 'Sneker.dbo.Orderdetails' is referenced by a relationship,
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="OrderDetails">
+            <EntityTypeMapping TypeName="SnekerModel.OrderDetail">
+              <MappingFragment StoreEntitySet="OrderDetails">
+                <ScalarProperty Name="OrderDetailsID" ColumnName="OrderDetailsID" />
+                <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+                <ScalarProperty Name="Unitprice" ColumnName="Unitprice" />
+                <ScalarProperty Name="Discount" ColumnName="Discount" />
+                <ScalarProperty Name="OrderID" ColumnName="OrderID" />
+                <ScalarProperty Name="ProductID" ColumnName="ProductID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="Orders">
             <EntityTypeMapping TypeName="SnekerModel.Order">
               <MappingFragment StoreEntitySet="Orders">
                 <ScalarProperty Name="OrderID" ColumnName="OrderID" />
                 <ScalarProperty Name="Orderdate" ColumnName="Orderdate" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Phone" ColumnName="Phone" />
                 <ScalarProperty Name="Shipname" ColumnName="Shipname" />
                 <ScalarProperty Name="Shipaddress" ColumnName="Shipaddress" />
                 <ScalarProperty Name="Shipcity" ColumnName="Shipcity" />
                 <ScalarProperty Name="Shipcountry" ColumnName="Shipcountry" />
+                <ScalarProperty Name="Note" ColumnName="Note" />
                 <ScalarProperty Name="Status" ColumnName="Status" />
                 <ScalarProperty Name="CustomerID" ColumnName="CustomerID" />
                 <ScalarProperty Name="EmployeeID" ColumnName="EmployeeID" />
@@ -428,16 +476,8 @@ error 6004: The table 'Sneker.dbo.Orderdetails' is referenced by a relationship,
                 <ScalarProperty Name="Discount" ColumnName="Discount" />
                 <ScalarProperty Name="Picture" ColumnName="Picture" />
                 <ScalarProperty Name="PicturePath" ColumnName="PicturePath" />
-                <ScalarProperty Name="SizeID" ColumnName="SizeID" />
+                <ScalarProperty Name="Size" ColumnName="Size" />
                 <ScalarProperty Name="CaterogyID" ColumnName="CaterogyID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Sizers">
-            <EntityTypeMapping TypeName="SnekerModel.Sizer">
-              <MappingFragment StoreEntitySet="Sizer">
-                <ScalarProperty Name="SizeID" ColumnName="SizeID" />
-                <ScalarProperty Name="Sizes" ColumnName="Sizes" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

@@ -17,7 +17,7 @@ namespace Sneker
                 name: "Default",
                 url: "{controller}/{action}/{id}",
                 defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional },
-                namespaces: new[] { "EdithTour.Controllers" }
+                namespaces: new[] { "Sneker.Controllers" }
             );
         }
     }

@@ -36,7 +36,7 @@
                                 }
                                 else
                                 {
-                                    <li><a href="@Url.Action("Users", "Account")">Hello, @Session["Name"]</a></li>
+                                    <li><a href="@Url.Action("Information", "Account")">Hello, @Session["Name"]</a></li>
                                     <li><a href="@Url.Action("Logout", "Account")">Logout</a></li>
                                 }
                             </ul>
@@ -64,7 +64,7 @@
                         </ul>
                     </li>
                     <li>
-                        <a class="sub-menu" href="booking.php">Collection</a>
+                        <a class="sub-menu" href="@Url.Action("Collection", "Home")">Collection</a>
                         @*<ul class="subnav">
                                 <li><a href="#proplant.html">ProPlant</a></li>
                                 <li><a href="#goodtrees.html">GoodTrees</a></li>
@@ -108,8 +108,8 @@
                 <div class="col-md-4">
                     <p class="title--right--footer mt-5">Sign up to receive new news</p>
                     <p class="subtitle--right--footer mt-5">Receive the latest product information, promotions and more.</p>
-                    <form>
-                        <input type="text" class="form-control txtEmail" placeholder="Your Email" value="@Session["Email"]" />
+                    <form action="/Home/Contact" method="post">
+                        <input type="text" class="form-control txtEmail" name="email" placeholder="Your Email" value="@Session["Email"]" />
                         <button type="submit" class="btn btn--dark--model mt-4">Register</button>
                     </form>
                     <div class="mt-3">

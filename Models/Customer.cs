@@ -26,7 +26,7 @@ namespace Sneker.Models
         public string Name { get; set; }
         public string Email { get; set; }
         public string Phone { get; set; }
-        public Nullable<System.DateTime> DateofBirth { get; set; }
+        public string DateofBirth { get; set; }
         public string Address { get; set; }
         public string Avatar { get; set; }
         public string AvatarPath { get; set; }

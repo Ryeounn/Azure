@@ -1,0 +1,88 @@
+﻿@model Sneker.Models.Product
+@{
+    ViewBag.Title = "Edit";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdminPage1.cshtml";
+}
+
+
+<div class="container-fluid">
+    <div class="box--add">
+        <div class="row">
+            <div class="col-md-12">
+                <p class="text">Edit Product</p>
+            </div>
+        </div>
+        <form action="/Admin/ProductAdmin/Edit/@Model.ProductID" method="post" enctype="multipart/form-data">
+            <div class="row">
+                <div class="col-md-1"></div>
+                <div class="col-md-5">
+                    <div class="form-group" hidden>
+                        <label class="form-text">Product Code</label>
+                        <input type="text" class="form-control" value="@Model.ProductID" name="productid" />
+                    </div>
+                    <div class="form-group">
+                        <label class="form-text">Product Code</label>
+                        <input type="text" class="form-control" value="@Model.Productcode" name="productcode" />
+                    </div>
+                    <div class="form-group">
+                        <label class="form-text">Product Name</label>
+                        <input type="text" class="form-control" value="@Model.Productname" name="productname" />
+                    </div>
+                    <div class="form-group">
+                        <label class="form-text">Quantity</label>
+                        <input type="text" class="form-control" value="@Model.Quantityperunit" name="quantityperunit" />
+                    </div>
+                    <div class="form-group">
+                        <label class="form-text">In Stock</label>
+                        <input type="text" class="form-control" value="@Model.Unitinstock" name="unitinstock" />
+                    </div>
+                    <div class="form-group">
+                        <label class="form-text">Price</label>
+                        <input type="text" class="form-control" value="@Model.Unitprice" name="unitprice" />
+                    </div>
+                </div>
+                <div class="col-md-5">
+                    <div class="form-group">
+                        <label class="form-text">Discount</label>
+                        <input type="text" placeholder="%" class="form-control" value="@Model.Discount" name="discount" />
+                    </div>
+                    <div class="form-group">
+                        <label class="form-text">Size</label>
+                        <input type="text" placeholder="36 - 42" class="form-control" value="@Model.Size" name="size" />
+                    </div>
+                    <div class="form-group">
+                        <label class="form-text">Category ID</label>
+                        <input type="text" placeholder="Nike-1, Adidas-2, Puma-3, Converse-4" class="form-control" value="@Model.CaterogyID" name="caterogyid" />
+                    </div>
+                    <div class="form-group">
+                        <label class="form-text">Image</label>
+                        <input type="file" class="form-control" onchange="chooseFile(this)" id="imageFile" value="@Model.Picture" name="imageFile" />
+                    </div>
+                    <div class="form-group">
+                        <img class="img---product mt-4" id="image" name="image" src="@Model.PicturePath@Model.Picture"/>
+                    </div>
+                </div>
+                <div class="col-md-1"></div>
+            </div>
+            <div class="row mt-3">
+                <div class="col-md-4"></div>
+                <div class="col-md-4">
+                    <button type="submit" name="create" class="btn--dark">Update</button>
+                </div>
+                <div class="col-md-4"></div>
+            </div>
+        </form>
+    </div>
+</div>
+<script>
+    function chooseFile(fileInput) {
+        if (fileInput.files && fileInput.files[0]) {
+            var reader = new FileReader();
+
+            reader.onload = function (e) {
+                $('#image').attr('src', e.target.result);
+            }
+            reader.readAsDataURL(fileInput.files[0]);
+        }
+    }
+</script>

@@ -10,6 +10,7 @@ namespace Sneker.Areas.Admin.Controllers
     public class HomeAdminController : Controller
     {
         // GET: Admin/HomeAdmin
+        SnekerEntities db = new SnekerEntities();
         public ActionResult Index()
         {
             return View();
@@ -30,5 +31,18 @@ namespace Sneker.Areas.Admin.Controllers
                 ViewBag.Photo = avt;
                 return PartialView("Avatar");
         }
+
+        public PartialViewResult Name()
+        {
+            string name = "";
+            var names = Session["UsernameAd"];
+            if(names != null)
+               name = Session["FirstName"].ToString()+ " " + Session["LastName"].ToString();
+               ViewBag.Name = name;
+               return PartialView("Name");
+        }
+
+        
+
     }
 }

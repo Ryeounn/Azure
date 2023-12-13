@@ -1,0 +1,70 @@
+﻿
+@{
+    ViewBag.Title = "Add Product";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdminPage1.cshtml";
+}
+
+<div class="container-fluid">
+    <div class="box--add">
+        <div class="row">
+            <div class="col-md-12">
+                <p class="text">Add Product</p>
+            </div>
+        </div>
+        <form action="/Admin/ProductAdmin/Add" method="post" enctype="multipart/form-data">
+            <div class="row">
+                <div class="col-md-1"></div>
+                <div class="col-md-5">
+                    <div class="form-group">
+                        <label class="form-text">Product Code</label>
+                        <input type="text" class="form-control" name="productcode" />
+                    </div>
+                    <div class="form-group">
+                        <label class="form-text">Product Name</label>
+                        <input type="text" class="form-control" name="productname" />
+                    </div>
+                    <div class="form-group">
+                        <label class="form-text">Quantity</label>
+                        <input type="text" class="form-control" name="quantityperunit" />
+                    </div>
+                    <div class="form-group">
+                        <label class="form-text">In Stock</label>
+                        <input type="text" class="form-control" name="unitinstock" />
+                    </div>
+                    <div class="form-group">
+                        <label class="form-text">Price</label>
+                        <input type="text" class="form-control" name="unitprice" />
+                    </div>
+                </div>
+                <div class="col-md-5">
+                    <div class="form-group">
+                        <label class="form-text">Discount</label>
+                        <input type="text" placeholder="%" class="form-control" name="discount" />
+                    </div>
+                    <div class="form-group">
+                        <label class="form-text">Size</label>
+                        <input type="text" placeholder="36 - 42" class="form-control" name="size" />
+                    </div>
+                    <div class="form-group">
+                        <label class="form-text">Category ID</label>
+                        <input type="text" placeholder="Nike-1, Adidas-2, Puma-3, Converse-4" class="form-control" name="caterogyid" />
+                    </div>
+                    <div class="form-group">
+                        <label class="form-text">Image</label>
+                        <input type="file" class="form-control" id="imageFile" name="imageFile" />
+                    </div>
+                </div>
+                <div class="col-md-1"></div>
+            </div>
+            <div class="row mt-3">
+                <div class="col-md-4"></div>
+                <div class="col-md-4">
+                    <button type="submit" name="create" class="btn--dark">Create</button>
+                </div>
+                <div class="col-md-4"></div>
+            </div>
+        </form>
+    </div>
+</div>
+
+

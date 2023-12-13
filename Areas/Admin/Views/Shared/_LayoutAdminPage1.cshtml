@@ -12,7 +12,7 @@
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script src="~/Content/Script/lazyload.js"></script>
     <link rel="icon" type="image/x-icon" href="~/Content/Image/Home/logo-brand.png">
-    <title></title>
+    <title>@ViewBag.Title</title>
 </head>
 <body>
     <nav class="sidebar close">
@@ -22,7 +22,7 @@
                     <a href="information.php">@Html.Action("Avatar", "HomeAdmin")</a>
                 </span>
                 <div class="text header-text">
-                    <span class="name"><?php echo $row['name'] ?></span>
+                    <span class="name">@Html.Action("Name", "HomeAdmin")</span>
                     <span class="profession"><?php echo $row['position'] ?></span>
                 </div>
             </div>
@@ -38,19 +38,19 @@
                 </li>
                 <ul class="menu-links">
                     <li class="nav-link">
-                        <a href="homeadmin.php">
+                        <a href="@Url.Action("Index","HomeAdmin")">
                             <i class="fas fa-home icon"></i>
                             <span class="text nav-text">Dashboard</span>
                         </a>
                     </li>
                     <li class="nav-link">
-                        <a href="add.php">
-                            <i class="fas fa-plus icon"></i>
-                            <span class="text nav-text">Add</span>
+                        <a href="@Url.Action("Staff","Employee")">
+                            <i class="fas fa-user-tie icon"></i>
+                            <span class="text nav-text">Employee</span>
                         </a>
                     </li>
                     <li class="nav-link">
-                        <a href="productadmin.php">
+                        <a href="@Url.Action("Shoe","ProductAdmin")">
                             <i class="fas fa-tags icon"></i>
                             <span class="text nav-text">Product</span>
                         </a>

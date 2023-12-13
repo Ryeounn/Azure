@@ -29,7 +29,7 @@
                 <b>Size: </b>
             </p>
             <ul id="list--size" class="list-add list-group account-settings-links">
-                <li><input class="list-group-item list-group-item-action active sizer--details" value="36" readonly data-toggle="list"></li>
+                <li><input class="list-group-item list-group-item-action active sizer--details" value="@Model.Size" readonly data-toggle="list"></li>
             </ul>
             <br />
             <p class="title--size--details mt-4"><b>Quantity: </b></p>
@@ -47,8 +47,8 @@
     <div class="row">
         <div class="col-md-12">
             <ul id="list--size" class="list-add list-group account-settings-links">
-                <li><a href="" class="list-group-item list-group-item-action text--tran active" data-toggle="list">Product Description</a></li>
-                <li><a href="" class="list-group-item list-group-item-action text--tran" data-toggle="list">After-Sales Service</a></li>
+                <li><a href="" class="list-group-item list-group-item-action text--tran active" id="description" data-toggle="list">Product Description</a></li>
+                <li><a href="" class="list-group-item list-group-item-action text--tran" id="service" data-toggle="list">After-Sales Service</a></li>
                 <li><a href="" class="list-group-item list-group-item-action text--tran" id="choosing" data-toggle="list">Instructions for choosing size</a></li>
             </ul>
         </div>
@@ -62,6 +62,18 @@
 <script>
     $('#choosing').click(function () {
         $('#ajax--load--details').load('/Product/Choosing');
+    })
+
+    $('#service').click(function () {
+        $('#ajax--load--details').load('/Product/Service');
+    })
+
+    $('#description').click(function () {
+        $('#ajax--load--details').load('/Product/Description');
+    })
+
+    $('#description').ready(function () {
+        $('#ajax--load--details').load('/Product/Description');
     })
 </script>
 <script src="~/Content/Script/Magnifier.js"></script>

@@ -57,6 +57,11 @@ namespace Sneker.Controllers
             return View();
         }
 
+        public ActionResult Description()
+        {
+            return View();
+        }
+
         public Cart GetCart()
         {
             Cart cart = Session["Cart"] as Cart;
@@ -129,7 +134,7 @@ namespace Sneker.Controllers
             return PartialView("BagCartTotal");
         }
 
-        public ActionResult CheckOut()
+        public ActionResult ShowOrder()
         {
             if (Session["Cart"] == null)
             {
@@ -140,5 +145,47 @@ namespace Sneker.Controllers
             return View(cart);
         }
 
+        
+        public ActionResult ShoppingSuccess()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult Checkout(FormCollection form) 
+        {
+            try
+            {
+                Cart cart = Session["Cart"] as Cart;
+                Order order = new Order();
+                order.Orderdate = DateTime.Now.ToString();
+                order.Shipname = form["name"];
+                order.Email = form["email"];
+                order.Phone = form["phone"];
+                order.Shipaddress = form["address"];
+                order.Shipcity = form["city"];
+                order.Shipcountry = form["country"];
+                order.Status = "Pending";
+                order.Note = form["note"];
+                db.Orders.Add(order);
+                foreach(var item in cart.Items)
+                {
+                    OrderDetail details = new OrderDetail();
+                    details.OrderID = order.OrderID;
+                    details.ProductID = item.product.ProductID;
+                    details.Quantity = (int?)item.quantity;
+                    details.Unitprice = item.product.Unitprice;
+                    details.Discount = item.product.Discount;
+                    db.OrderDetails.Add(details);
+                }
+                db.SaveChanges();
+                cart.ClearCart();
+                return RedirectToAction("ShoppingSuccess", "Product");
+            }
+            catch
+            {
+                return Content("Error Checkout. Please information of Customer...");
+            }
+        }
     }
 }

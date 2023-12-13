@@ -11,6 +11,7 @@ namespace Sneker.Controllers
     public class HomeController : Controller
     {
         // GET: Home
+        SnekerEntities db = new SnekerEntities();
         public ActionResult Index()
         {
             var model = new Functions().Nikes().ToList();
@@ -38,6 +39,32 @@ namespace Sneker.Controllers
         public ActionResult Service()
         {
             return View();
+        }
+
+        public ActionResult Collection()
+        {
+            var model = new Collection().Nikes().ToList();
+            var model1 = new Collection().Adidas().ToList();
+            var model2 = new Collection().Puma().ToList();
+            var model3 = new Collection().Converse().ToList();
+            var model4 = new Collection().All().ToList();
+            dynamic myModel = new ExpandoObject();
+            myModel.Nike = model;
+            myModel.Adidas = model1;
+            myModel.Puma = model2;
+            myModel.Converse = model3;
+            myModel.All = model4;
+            return View(myModel);
+        }
+
+        [HttpPost]
+        public ActionResult Contact(FormCollection form)
+        {
+            Contact contact = new Contact();
+            contact.ContactEmail = form["email"];
+            db.Contacts.Add(contact);
+            db.SaveChanges();
+            return RedirectToAction("Index");
         }
     }
 }

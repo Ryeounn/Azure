@@ -1,6 +1,8 @@
 ﻿using Sneker.Models;
 using System;
 using System.Collections.Generic;
+using System.Dynamic;
+using System.IO;
 using System.Linq;
 using System.Security.Cryptography;
 using System.Text;
@@ -42,9 +44,9 @@ namespace Sneker.Controllers
                     Session["Avatar"] = customerdata.FirstOrDefault().Avatar;
                     Session["Password"] = f_password;
                     Session["Username"] = customerdata.FirstOrDefault().Username;
-                    return RedirectToAction("Index", "Home", new {area = ""});
+                    return RedirectToAction("Index", "Home", new { area = "" });
                 }
-                else if(employeedata.Count() > 0)
+                else if (employeedata.Count() > 0)
                 {
                     //add session
                     Session["FirstName"] = employeedata.FirstOrDefault().Firstname;
@@ -61,7 +63,8 @@ namespace Sneker.Controllers
                     //return View("~/Areas/Admin/Views/HomeAdmin/Index.cshtml");
                     return RedirectToAction("Index", "HomeAdmin", new { area = "Admin" });
                 }
-                else {
+                else
+                {
                     ViewBag.error = "Login failed";
                     return RedirectToAction("Users");
                 }
@@ -72,7 +75,7 @@ namespace Sneker.Controllers
         public ActionResult Logout()
         {
             Session.Clear();//remove session
-            return RedirectToAction("Users","Account");
+            return RedirectToAction("Users", "Account");
         }
 
         public ActionResult ForgotPassword()
@@ -84,15 +87,15 @@ namespace Sneker.Controllers
         public ActionResult ForgotPassword(string email)
         {
             var check = db.Customers.Where(row => row.Email == email);
-            if(check != null)
+            if (check != null)
             {
                 Session["Reset"] = email;
-                return RedirectToAction("Change","Account");
+                return RedirectToAction("Change", "Account");
             }
             else
             {
                 return View();
-            }  
+            }
         }
 
         public ActionResult Change()
@@ -101,16 +104,16 @@ namespace Sneker.Controllers
         }
 
         [HttpPost]
-        public ActionResult Change( string password, string confirm)
+        public ActionResult Change(string password, string confirm)
         {
             var email = Session["Reset"].ToString();
             var pass = GetMD5(password);
             var cpass = GetMD5(confirm);
             var check = db.Customers.Where(row => row.Password != pass && pass == cpass);
-            if(check != null)
+            if (check != null)
             {
                 var cus = db.Customers.Where(s => s.Email == email).FirstOrDefault();
-                if(cus != null)
+                if (cus != null)
                 {
                     var customeredit = db.Customers.FirstOrDefault(s => s.Email == email);
                     customeredit.Password = pass;
@@ -122,7 +125,7 @@ namespace Sneker.Controllers
                     return View("Users");
                 }
             }
-            
+
             return View();
         }
 
@@ -142,7 +145,7 @@ namespace Sneker.Controllers
                     customer.Password = GetMD5(customer.Password);
                     db.Customers.Add(customer);
                     db.SaveChanges();
-                    return RedirectToAction("Users","Account");
+                    return RedirectToAction("Users", "Account");
 
                 }
                 else
@@ -168,5 +171,88 @@ namespace Sneker.Controllers
             }
             return byte2String;
         }
+
+        public ActionResult Information()
+        {
+            return View();
+        }
+
+        public ActionResult General()
+        {
+            var user = Session["Username"].ToString();
+            Customer customer = db.Customers.Where(s => s.Username == user).FirstOrDefault();
+            return View(customer);
+        }
+
+        [HttpPost]
+        public ActionResult General(Customer customer, HttpPostedFileBase imageFiles)
+        {
+            if (ModelState.IsValid)
+            {
+                var user = Session["Username"].ToString();
+                var data = db.Customers.FirstOrDefault(s => s.Username == user);
+                if (data != null)
+                {
+                    Customer customeredit = db.Customers.Where(row => row.Username == user).FirstOrDefault();
+                    customeredit.Name = customer.Name;
+                    customeredit.Email = customer.Email;
+                    customeredit.Address = customer.Address;
+                    customeredit.DateofBirth = customer.DateofBirth;
+                    customeredit.Phone = customer.Phone;
+                    customeredit.AvatarPath = "/Image/Customer/";
+                    string filename = customeredit.Username + ".jpg";
+                    string path = Path.Combine(Server.MapPath("/Image/Customer/"), filename);
+                    imageFiles.SaveAs(path);
+                    customeredit.Avatar = filename;
+                    db.SaveChanges();
+                    return RedirectToAction("Information", "Account");
+                }
+                else
+                {
+                    return RedirectToAction("Information", "Account");
+                }
+            }
+            return View();
+        }
+
+        public ActionResult ChangePassword()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult ChangePassword(string Password, Customer customer, string New)
+        {
+            var user = Session["Username"].ToString();
+            var Pass = GetMD5(Password);
+            var NewPass = GetMD5(New);
+
+            //var fpassword = GetMD5(Password);
+            var data = db.Customers.Where(s => s.Username == user && s.Password == Pass);
+            if (data != null)
+            {
+
+                var cus = db.Customers.Where(s => s.Username == user && s.Password == NewPass).FirstOrDefault();
+                if (cus == null)
+                {
+                    var customeredit = db.Customers.FirstOrDefault(s => s.Username == user);
+                    customeredit.Password = NewPass;
+                    db.SaveChanges();
+                    return View("Information");
+                }
+                else
+                {
+                    return RedirectToAction("Information");
+
+                }
+            }
+
+            else
+            {
+                return View("Login");
+
+            }
+        }
+
     }
 }

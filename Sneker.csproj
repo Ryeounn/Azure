@@ -104,7 +104,9 @@
     <Content Include="Content\Image\Details\details2.png" />
     <Content Include="Content\Image\Details\details3.png" />
     <Content Include="Content\Image\Details\details4.png" />
+    <Content Include="Content\Image\Details\empty.jpg" />
     <Content Include="Content\Image\faker.jpg" />
+    <Content Include="Content\Image\Home\collection.png" />
     <Content Include="Content\Image\Home\france.png" />
     <Content Include="Content\Image\Home\logo-brand.png" />
     <Content Include="Content\Image\Home\sneker.png" />
@@ -136,6 +138,7 @@
     <Content Include="Content\Image\Product\nike5.png" />
     <Content Include="Content\Image\Product\nike6.png" />
     <Content Include="Content\Image\Product\nike7.png" />
+    <Content Include="Content\Image\Product\product.png" />
     <Content Include="Content\Image\Product\puma.png" />
     <Content Include="Content\Image\Product\puma1.png" />
     <Content Include="Content\Image\Product\puma2.png" />
@@ -145,6 +148,7 @@
     <Content Include="Content\Image\Product\puma6.png" />
     <Content Include="Content\Image\Product\puma7.png" />
     <Content Include="Content\Image\service.png" />
+    <Content Include="Content\Image\Service\services.png" />
     <Content Include="Content\Image\Stories\stories.jpg" />
     <Content Include="Content\Image\upicon.png" />
     <Content Include="Content\Script\Increase.js" />
@@ -166,36 +170,37 @@
   <ItemGroup>
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
+    <Compile Include="Areas\Admin\Controllers\EmployeeController.cs" />
     <Compile Include="Areas\Admin\Controllers\HomeAdminController.cs" />
+    <Compile Include="Areas\Admin\Controllers\ProductAdminController.cs" />
     <Compile Include="Models\Cart.cs" />
     <Compile Include="Models\CartView.cs" />
+    <Compile Include="Controllers\ProductController.cs" />
+    <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Global.asax.cs">
+      <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
     <Compile Include="Models\Category.cs">
       <DependentUpon>SnekerDBContext.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Contact.cs">
       <DependentUpon>SnekerDBContext.tt</DependentUpon>
     </Compile>
-    <Compile Include="Controllers\ProductController.cs" />
-    <Compile Include="Controllers\AccountController.cs" />
-    <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Models\Customer.cs">
       <DependentUpon>SnekerDBContext.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Employee.cs">
       <DependentUpon>SnekerDBContext.tt</DependentUpon>
     </Compile>
-    <Compile Include="Global.asax.cs">
-      <DependentUpon>Global.asax</DependentUpon>
-    </Compile>
     <Compile Include="Models\Join.cs" />
     <Compile Include="Models\Order.cs">
       <DependentUpon>SnekerDBContext.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\Product.cs">
+    <Compile Include="Models\OrderDetail.cs">
       <DependentUpon>SnekerDBContext.tt</DependentUpon>
     </Compile>
-    <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Models\Sizer.cs">
+    <Compile Include="Models\Product.cs">
       <DependentUpon>SnekerDBContext.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\SnekerDBContext.Context.cs">
@@ -213,6 +218,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>SnekerDBContext.edmx</DependentUpon>
     </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\web.config" />
@@ -220,6 +226,19 @@
     <Content Include="Areas\Admin\Views\Shared\_LayoutAdminPage1.cshtml" />
     <Content Include="Areas\Admin\Views\HomeAdmin\Index.cshtml" />
     <Content Include="Areas\Admin\Views\HomeAdmin\Avatar.cshtml" />
+    <Content Include="Areas\Admin\Views\HomeAdmin\Name.cshtml" />
+    <Content Include="Areas\Admin\Views\ProductAdmin\Shoe.cshtml" />
+    <Content Include="Areas\Admin\Views\ProductAdmin\Add.cshtml" />
+    <Content Include="Areas\Admin\Views\ProductAdmin\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\Employee\Staff.cshtml" />
+    <Content Include="Areas\Admin\Views\Employee\Add.cshtml" />
+    <EntityDeploy Include="Models\SnekerDBContext.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>SnekerDBContext.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="Models\SnekerDBContext.edmx.diagram">
+      <DependentUpon>SnekerDBContext.edmx</DependentUpon>
+    </Content>
     <None Include="packages.config" />
     <Content Include="Views\Shared\_LayoutPage1.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
@@ -232,21 +251,20 @@
     <Content Include="Views\Account\Change.cshtml" />
     <Content Include="Views\Product\Shoes.cshtml" />
     <Content Include="Views\Home\Service.cshtml" />
-    <EntityDeploy Include="Models\SnekerDBContext.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>SnekerDBContext.Designer.cs</LastGenOutput>
-    </EntityDeploy>
-    <Content Include="Models\SnekerDBContext.edmx.diagram">
-      <DependentUpon>SnekerDBContext.edmx</DependentUpon>
-    </Content>
     <Content Include="Views\Product\Search.cshtml" />
     <Content Include="Views\Product\Details.cshtml" />
     <Content Include="Views\Product\Choosing.cshtml" />
     <Content Include="Views\Product\Service.cshtml" />
     <Content Include="Views\Product\Order.cshtml" />
     <Content Include="Views\Product\BagCart.cshtml" />
-    <Content Include="Views\Product\CheckOut.cshtml" />
+    <Content Include="Views\Product\ShowOrder.cshtml" />
     <Content Include="Views\Product\BagCartTotal.cshtml" />
+    <Content Include="Views\Product\ShoppingSuccess.cshtml" />
+    <Content Include="Views\Account\Information.cshtml" />
+    <Content Include="Views\Account\General.cshtml" />
+    <Content Include="Views\Account\ChangePassword.cshtml" />
+    <Content Include="Views\Product\Description.cshtml" />
+    <Content Include="Views\Home\Collection.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -257,7 +275,8 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Areas\Admin\Data\" />
-    <Folder Include="Content\Image\Service\" />
+    <Folder Include="Image\Customer\" />
+    <Folder Include="Image\Employee\" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />

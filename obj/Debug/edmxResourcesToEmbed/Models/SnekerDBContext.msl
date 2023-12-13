@@ -51,15 +51,30 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <EntitySetMapping Name="OrderDetails">
+      <EntityTypeMapping TypeName="SnekerModel.OrderDetail">
+        <MappingFragment StoreEntitySet="OrderDetails">
+          <ScalarProperty Name="OrderDetailsID" ColumnName="OrderDetailsID" />
+          <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+          <ScalarProperty Name="Unitprice" ColumnName="Unitprice" />
+          <ScalarProperty Name="Discount" ColumnName="Discount" />
+          <ScalarProperty Name="OrderID" ColumnName="OrderID" />
+          <ScalarProperty Name="ProductID" ColumnName="ProductID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
     <EntitySetMapping Name="Orders">
       <EntityTypeMapping TypeName="SnekerModel.Order">
         <MappingFragment StoreEntitySet="Orders">
           <ScalarProperty Name="OrderID" ColumnName="OrderID" />
           <ScalarProperty Name="Orderdate" ColumnName="Orderdate" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="Phone" ColumnName="Phone" />
           <ScalarProperty Name="Shipname" ColumnName="Shipname" />
           <ScalarProperty Name="Shipaddress" ColumnName="Shipaddress" />
           <ScalarProperty Name="Shipcity" ColumnName="Shipcity" />
           <ScalarProperty Name="Shipcountry" ColumnName="Shipcountry" />
+          <ScalarProperty Name="Note" ColumnName="Note" />
           <ScalarProperty Name="Status" ColumnName="Status" />
           <ScalarProperty Name="CustomerID" ColumnName="CustomerID" />
           <ScalarProperty Name="EmployeeID" ColumnName="EmployeeID" />
@@ -78,16 +93,8 @@
           <ScalarProperty Name="Discount" ColumnName="Discount" />
           <ScalarProperty Name="Picture" ColumnName="Picture" />
           <ScalarProperty Name="PicturePath" ColumnName="PicturePath" />
-          <ScalarProperty Name="SizeID" ColumnName="SizeID" />
+          <ScalarProperty Name="Size" ColumnName="Size" />
           <ScalarProperty Name="CaterogyID" ColumnName="CaterogyID" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="Sizers">
-      <EntityTypeMapping TypeName="SnekerModel.Sizer">
-        <MappingFragment StoreEntitySet="Sizer">
-          <ScalarProperty Name="SizeID" ColumnName="SizeID" />
-          <ScalarProperty Name="Sizes" ColumnName="Sizes" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

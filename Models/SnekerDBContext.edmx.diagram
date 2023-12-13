@@ -4,18 +4,19 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="e1508fac15fe486babf2edc5bdb4f924" Name="Diagram1">
-        <EntityTypeShape EntityType="SnekerModel.Category" Width="1.5" PointX="0.75" PointY="1.875" IsExpanded="true" />
+      <Diagram DiagramId="01b47b627db64844b14c53b96c12bda2" Name="Diagram1">
+        <EntityTypeShape EntityType="SnekerModel.Category" Width="1.5" PointX="0.75" PointY="11.125" IsExpanded="true" />
         <EntityTypeShape EntityType="SnekerModel.Contact" Width="1.5" PointX="2.75" PointY="5.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="SnekerModel.Customer" Width="1.5" PointX="5.75" PointY="1" IsExpanded="true" />
-        <EntityTypeShape EntityType="SnekerModel.Employee" Width="1.5" PointX="5.75" PointY="4.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="SnekerModel.Order" Width="1.5" PointX="8" PointY="1" IsExpanded="true" />
-        <EntityTypeShape EntityType="SnekerModel.Product" Width="1.5" PointX="3" PointY="1" IsExpanded="true" />
-        <EntityTypeShape EntityType="SnekerModel.Sizer" Width="1.5" PointX="0.75" PointY="6" IsExpanded="true" />
+        <EntityTypeShape EntityType="SnekerModel.Customer" Width="1.5" PointX="0.75" PointY="1.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="SnekerModel.Employee" Width="1.5" PointX="0.75" PointY="5.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="SnekerModel.OrderDetail" Width="1.5" PointX="5.25" PointY="1.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="SnekerModel.Order" Width="1.5" PointX="3" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="SnekerModel.Product" Width="1.5" PointX="3" PointY="10.25" IsExpanded="true" />
         <AssociationConnector Association="SnekerModel.fk_data_id_caterogies" ManuallyRouted="false" />
         <AssociationConnector Association="SnekerModel.fk_data_id_orders" ManuallyRouted="false" />
         <AssociationConnector Association="SnekerModel.fk_data_id_orderss" ManuallyRouted="false" />
-        <AssociationConnector Association="SnekerModel.fk_data_id_sizer" ManuallyRouted="false" />
+        <AssociationConnector Association="SnekerModel.fk_data_id_orderdetails" ManuallyRouted="false" />
+        <AssociationConnector Association="SnekerModel.fk_data_id_orderdetailss" ManuallyRouted="false" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

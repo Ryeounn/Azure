@@ -14,17 +14,28 @@ namespace Sneker.Models
     
     public partial class Order
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public Order()
+        {
+            this.OrderDetails = new HashSet<OrderDetail>();
+        }
+    
         public int OrderID { get; set; }
-        public Nullable<System.DateTime> Orderdate { get; set; }
+        public string Orderdate { get; set; }
+        public string Email { get; set; }
+        public string Phone { get; set; }
         public string Shipname { get; set; }
         public string Shipaddress { get; set; }
         public string Shipcity { get; set; }
         public string Shipcountry { get; set; }
+        public string Note { get; set; }
         public string Status { get; set; }
         public Nullable<int> CustomerID { get; set; }
         public Nullable<int> EmployeeID { get; set; }
     
         public virtual Customer Customer { get; set; }
         public virtual Employee Employee { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<OrderDetail> OrderDetails { get; set; }
     }
 }
