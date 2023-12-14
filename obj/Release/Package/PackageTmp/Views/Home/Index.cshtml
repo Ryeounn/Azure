@@ -1,0 +1,153 @@
+﻿@model dynamic
+@{
+    ViewBag.Title = "Home";
+    Layout = "~/Views/Shared/_LayoutPage1.cshtml";
+}
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-12 col--fluid--shoes">
+            <div id="demo" class="carousel slide" data-ride="carousel">
+
+                <!-- Indicators -->
+                <ul class="carousel-indicators">
+                    <li data-target="#demo" data-slide-to="0" class="active"></li>
+                    <li data-target="#demo" data-slide-to="1"></li>
+                    <li data-target="#demo" data-slide-to="2"></li>
+                </ul>
+
+                <!-- The slideshow -->
+                <div class="carousel-inner">
+                    <div class="carousel-item active">
+                        <img src="~/Content/Image/Home/sneker3.png" width="100%">
+                    </div>
+                    <div class="carousel-item">
+                        <img src="~/Content/Image/Home/sneker2.png" width="100%">
+                    </div>
+                    <div class="carousel-item">
+                        <img src="~/Content/Image/Home/sneker.png" width="100%">
+                    </div>
+                </div>
+
+                <!-- Left and right controls -->
+                <a class="carousel-control-prev" hidden href="#demo" data-slide="prev">
+                    <span class="carousel-control-prev-icon"></span>
+                </a>
+                <a class="carousel-control-next" hidden href="#demo" data-slide="next">
+                    <span class="carousel-control-next-icon"></span>
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="container">
+    @* Nike *@
+    <div class="row">
+        <div class="col-md-12">
+            <p class="all--title--home mt-5">Nike</p>
+            <p class="under-border"></p>
+        </div>
+    </div>
+    <div class="row mt-5">
+        @foreach(var item in Model.Nike)
+        {
+            string path = item.PicturePath + item.Picture;
+        <div class="col-md-3">
+            <div class="box--home" data-aos="fade-up" data-aos-duration="1000">
+                <img lazy-src="@path" src="" class="box--img--home" />
+                <p class="box--brand mt-3">@item.CateName</p>
+                <p class="box--name--home">@item.Name</p>
+                <p class="box--price--home">@item.Unitpirce$</p>
+                <a class="over--lay" href="@Url.Action("Details/" + @item.Id, "Product")">Select</a>
+            </div>
+        </div>
+        }
+    </div>
+    <div class="row mt-5">
+        <div class="col-md-12">
+            <a class="btn btn--dark--model btn--dark--home" href="@Url.Action("Shoes/1","Product")">See all . Nike</a>
+        </div>
+    </div>
+    @* Adidas *@
+    <div class="row">
+        <div class="col-md-12">
+            <p class="all--title--home mt-5">Adidas</p>
+            <p class="under-border"></p>
+        </div>
+    </div>
+    <div class="row mt-5">
+        @foreach (var items in Model.Adidas)
+        {
+            string path = items.PicturePath + items.Picture;
+            <div class="col-md-3">
+                <div class="box--home" data-aos="fade-up" data-aos-duration="1000">
+                    <img lazy-src="@path" src="" class="box--img--home" />
+                    <p class="box--brand mt-3">@items.CateName</p>
+                    <p class="box--name--home">@items.Name</p>
+                    <p class="box--price--home">@items.Unitpirce$</p>
+                    <a class="over--lay" href="@Url.Action("Details/" + @items.Id, "Product")">Select</a>
+                </div>
+            </div>
+        }
+    </div>
+    <div class="row mt-5">
+        <div class="col-md-12">
+            <a class="btn btn--dark--model btn--dark--home" href="@Url.Action("Shoes/2","Product")">See all . Adidas</a>
+        </div>
+    </div>
+    @* Puma *@
+    <div class="row">
+        <div class="col-md-12">
+            <p class="all--title--home mt-5">Puma</p>
+            <p class="under-border"></p>
+        </div>
+    </div>
+    <div class="row mt-5">
+        @foreach (var i in Model.Puma)
+        {
+            string path = i.PicturePath + i.Picture;
+            <div class="col-md-3">
+                <div class="box--home" data-aos="fade-up" data-aos-duration="1000">
+                    <img lazy-src="@path" src="" class="box--img--home" />
+                    <p class="box--brand mt-3">@i.CateName</p>
+                    <p class="box--name--home">@i.Name</p>
+                    <p class="box--price--home">@i.Unitpirce$</p>
+                    <a class="over--lay" href="@Url.Action("Details/" + @i.Id, "Product")">Select</a>
+                </div>
+            </div>
+        }
+    </div>
+    <div class="row mt-5">
+        <div class="col-md-12">
+            <a class="btn btn--dark--model btn--dark--home" href="@Url.Action("Shoes/3","Product")">See all . Puma</a>
+        </div>
+    </div>
+    @* Converse *@
+    <div class="row">
+        <div class="col-md-12">
+            <p class="all--title--home mt-5">Converse</p>
+            <p class="under-border"></p>
+        </div>
+    </div>
+    <div class="row mt-5">
+        @foreach (var c in Model.Converse)
+        {
+            string path = c.PicturePath + c.Picture;
+            <div class="col-md-3">
+                <div class="box--home" data-aos="fade-up" data-aos-duration="1000">
+                    <img lazy-src="@path" src="" class="box--img--home" />
+                    <p class="box--brand mt-3">@c.CateName</p>
+                    <p class="box--name--home">@c.Name</p>
+                    <p class="box--price--home">@c.Unitpirce$</p>
+                    <a class="over--lay" href="@Url.Action("Details/" + @c.Id, "Product")">Select</a>
+                </div>
+            </div>
+        }
+    </div>
+    <div class="row mt-5">
+        <div class="col-md-12">
+            <a class="btn btn--dark--model btn--dark--home" href="@Url.Action("Shoes/4","Product")">See all . Converse</a>
+        </div>
+    </div>
+</div>
+

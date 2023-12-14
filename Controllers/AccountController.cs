@@ -171,6 +171,7 @@ namespace Sneker.Controllers
                     customer.Password = GetMD5(customer.Password);
                     db.Customers.Add(customer);
                     db.SaveChanges();
+                    TempData["result"] = "Register sucessfully! Please Login again!";
                     return RedirectToAction("Users", "Account");
                 }
                 else
@@ -240,11 +241,11 @@ namespace Sneker.Controllers
                     customeredit.Address = customer.Address;
                     customeredit.DateofBirth = customer.DateofBirth;
                     customeredit.Phone = customer.Phone;
-                    customeredit.AvatarPath = "/Image/Customer/";
                     string filename = customeredit.Username + ".jpg";
-                    string path = Path.Combine(Server.MapPath("/Image/Customer/"), filename);
+                    string path = Path.Combine(Server.MapPath("/Content/Image/Customer/"), filename);
                     imageFiles.SaveAs(path);
                     customeredit.Avatar = filename;
+                    customeredit.AvatarPath = "/Content/Image/Customer/";
                     db.SaveChanges();
                     TempData["result"] = "Update Information successfully!";
                     return RedirectToAction("Information", "Account");

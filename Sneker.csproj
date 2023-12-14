@@ -106,11 +106,13 @@
     <Content Include="Areas\Admin\Script\ChartRevenue.js" />
     <Content Include="Areas\Admin\Script\Layout.js" />
     <Content Include="Content\Css\Style.css" />
+    <Content Include="Content\Image\Customer\ryeoun.jpg" />
     <Content Include="Content\Image\Details\details.png" />
     <Content Include="Content\Image\Details\details2.png" />
     <Content Include="Content\Image\Details\details3.png" />
     <Content Include="Content\Image\Details\details4.png" />
     <Content Include="Content\Image\Details\empty.jpg" />
+    <Content Include="Content\Image\Employee\CTHG04.jpg" />
     <Content Include="Content\Image\faker.jpg" />
     <Content Include="Content\Image\Home\collection.png" />
     <Content Include="Content\Image\Home\france.png" />
@@ -242,13 +244,6 @@
     <Content Include="Areas\Admin\Views\ProductAdmin\Edit.cshtml" />
     <Content Include="Areas\Admin\Views\Employee\Staff.cshtml" />
     <Content Include="Areas\Admin\Views\Employee\Add.cshtml" />
-    <EntityDeploy Include="Models\SnekerDBContext.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>SnekerDBContext.Designer.cs</LastGenOutput>
-    </EntityDeploy>
-    <Content Include="Models\SnekerDBContext.edmx.diagram">
-      <DependentUpon>SnekerDBContext.edmx</DependentUpon>
-    </Content>
     <Content Include="Areas\Admin\Views\Employee\Edit.cshtml" />
     <Content Include="Areas\Admin\Views\HomeAdmin\Information.cshtml" />
     <Content Include="Areas\Admin\Views\HomeAdmin\ChangePassword.cshtml" />
@@ -262,6 +257,13 @@
     <Content Include="Areas\Admin\Views\RevenueAdmin\Revenue.cshtml" />
     <Content Include="Areas\Admin\Views\RevenueAdmin\Edit.cshtml" />
     <Content Include="Areas\Admin\Views\Notification\Edit.cshtml" />
+    <EntityDeploy Include="Models\SnekerDBContext.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>SnekerDBContext.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="Models\SnekerDBContext.edmx.diagram">
+      <DependentUpon>SnekerDBContext.edmx</DependentUpon>
+    </Content>
     <None Include="packages.config" />
     <Content Include="Views\Shared\_LayoutPage1.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
@@ -298,8 +300,6 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Areas\Admin\Data\" />
-    <Folder Include="Image\Customer\" />
-    <Folder Include="Image\Employee\" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />

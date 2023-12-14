@@ -1,0 +1,230 @@
+﻿@model Sneker.Models.Cart
+@{
+    ViewBag.Title = "Order";
+    Layout = "~/Views/Shared/_LayoutPage1.cshtml";
+}
+
+<hr />
+<div class="container">
+    <div class="row mb-1">
+        <div class="col-md-12">
+            <a class="navbar--all" href="@Url.Action("Index", "Home")">Home</a> >
+            <p class="subnavbar--all">Order</p>
+        </div>
+    </div>
+</div>
+<hr />
+@if (Model != null)
+{
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <p class="title--shopping">Shopping cart</p><span>(@Html.Action("BagCartTotal", "Product") product)</span>
+            </div>
+        </div>
+        <div class="row">
+            @if (ViewBag.SuccessMg != null)
+            {
+                <div id="msgAlert" style="margin-left: 1em;" class="alert alert-success">
+                    @ViewBag.SuccessMg
+                </div>
+            }
+            else if (ViewBag.ErrorMg != null)
+            {
+                <div id="msgsAlert" style="margin-left: 1em;" class="alert alert-danger">
+                    @ViewBag.ErrorMg
+                </div>
+            }
+        </div>
+        <form action="/Product/ShowOrder" method="post">
+            <div class="row">
+                <div class="col-md-9 mt-4">
+                    @foreach (var item in Model.Items)
+                    {
+                        <div class="box--order mb-4">
+                            <div class="row">
+                                <div class="col-md-3">
+                                    @{
+                                        string imgURL = item.product.PicturePath + item.product.Picture;
+                                    }
+                                    <img class="img--order" src="@Url.Content(imgURL)" />
+                                </div>
+                                <div class="col-md-5">
+                                    <p class="name--order">@item.product.Productname / @item.product.Size</p>
+                                    <p class="name--delete--order"><a class="delete--order" href="@Url.Action("Delete/" + item.product.ProductID, "Product")">Delete</a></p>
+                                </div>
+                                <div class="col-md-2 mt-5">
+                                    <p class="price--order">@item.product.Unitprice$</p>
+                                </div>
+                                <div class="col-md-2 mt-4">
+                                    <div id="buy--amount" class="amount--order">
+                                        <button class="minus--btn"><i class="fas fa-minus"></i></button>
+                                        <input type="text" name="ql" id="amounts" value="@item.quantity" maxlength="3">
+                                        <button class="plus--btn"><i class="fas fa-plus"></i></button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                </div>
+                <div class="col-md-3 mt-4">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <p class="titletemp--order"><b>Provisional:</b></p>
+                        </div>
+                        <div class="col-md-6">
+                            <p class="money--order">@Model.Total_money()$</p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <hr />
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <p class="titletemp--order"><b>Total:</b></p>
+                        </div>
+                        <div class="col-md-6">
+                            <p class="money--order">@Model.Total_money()$</p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <button type="submit" class="btn--dark--model btn--pay--order">Pay Now</button>
+                        </div>
+                        <div class="col-md-12 mt-2">
+                            <a href="@Url.Action("Shoes/0","Product")" class="btn--continue--order">Continue shopping</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+}
+else
+{
+     <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <p class="title--shopping">Shopping cart</p><span>( 0 Products )</span>
+             </div>
+        </div>
+         <div class="row">
+             <div class="col-md-12">
+                 <img src="~/Content/Image/Details/empty.jpg"/>
+             </div>
+         </div>
+     </div>
+}
+<script>
+    let amountElement = document.getElementById('amounts');
+    let amount = amountElement.value;
+
+    let render = (amounts) => {
+        amountElement.value = amount
+    }
+    //Handle Plus
+    let handlePluss = () => {
+        amount++
+        render(amounts);
+    }
+
+    //Handle Minus
+    let handleMinuss = () => {
+        if (amount > 1)
+            amount--;
+        render(amount);
+    }
+
+    amountElement.addEventListener('input', () => {
+        amount = amountElements.value;
+        amount = parseInt(amount);
+        amount = (isNaN(amount) || amount == 0) ? 1 : amount;
+        render(amount);
+    });
+    setTimeout(function () {
+        $('#msgAlert').fadeOut('slow');
+        $('#msgsAlert').fadeOut('slow');
+    }, 2000);
+</script>
+@*@if (Model != null)
+    {
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Image</th>
+                    <th>Ticket</th>
+                    <th>Price</th>
+                    <th>Quantity</th>
+                    <th></th>
+                    <th>To</th>
+
+
+            </thead>
+
+            <tbody>
+                @foreach (var item in Model.Items)
+                {
+                    decimal total = Convert.ToDecimal(item.quantity * item.product.Unitprice);
+                    <tr>
+                        <td>
+                            model => item.product.Name;
+                        </td>
+                        <td>
+                            @{
+                                string imgURL = item.product.PicturePath + item.product.Picture;
+                            }
+                            <img src="@Url.Content(imgURL)" style="width: 100px;height: 100px;" />
+
+                        </td>
+                        <td>
+                            <select class="form-control">
+                                @foreach (var tic in Model.select_cart())
+                                {
+                                    <option name="Name_Ticket">@tic.Productname</option>
+                                }
+                            </select>
+                        </td>
+                        <td>
+                            @Html.DisplayFor(model => item.product.Unitprice)
+                        </td>
+                        <td>
+                            @using (Html.BeginForm("Update_Quantity_Cart", "Product"))
+                            {
+                                <input type="hidden" value="@item.product.ProductID" name="ProductID" class="btn btn-primary" />
+                                <input type="number" value="@item.quantity" name="Quantity" class="form-control" style="width: 100px" />
+                            <td>
+                                <input type="submit" value="Update" class="btn btn-primary" />
+                            </td>
+
+                        }
+                            </td>
+                            <td>
+                                @total
+
+                            </td>
+                        </tr>
+
+                    }
+            </tbody>
+            <tfoot>
+                <tr>
+                    <td colspan="5" style="text-align: right"> Total: @Model.Total_money()</td>
+
+                </tr>
+
+
+
+
+
+            </tfoot>
+        </table>
+        <a href="@Url.Action("Shoes", "Product")">back</a>
+    }
+    else
+    {
+        <p>Your Cart is Empty</p>
+    }*@
+

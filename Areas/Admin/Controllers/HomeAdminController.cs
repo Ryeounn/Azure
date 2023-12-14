@@ -32,7 +32,7 @@ namespace Sneker.Areas.Admin.Controllers
             string avt = "";
             var employee = Session["UsernameAd"];
             if (employee != null)
-                avt = Session["PhotoPath"].ToString() + Session["Photo"].ToString();
+                avt = Session["PhotoPath"] + Session["Photo"].ToString();
                 ViewBag.Photo = avt;
                 return PartialView("Avatar");
         }
@@ -122,9 +122,9 @@ namespace Sneker.Areas.Admin.Controllers
                 employee.Birthday = form["birthday"];
                 employee.Address = form["address"];
                 string filename = employee.Username + ".jpg";
-                string path = Path.Combine(Server.MapPath("/Image/Employee/"), filename);
+                string path = Path.Combine(Server.MapPath("/Content/Image/Employee/"), filename);
                 imageFile.SaveAs(path);
-                employee.PhotoPath = "/Image/Employee/";
+                employee.PhotoPath = "/Content/Image/Employee/";
                 employee.Photo = filename;
                 db.SaveChanges();
                 TempData["result"] = "Update Information successfully!";

@@ -51,9 +51,9 @@ namespace Sneker.Areas.Admin.Controllers
                     customeradd.DateofBirth = form["date"];
                     customeradd.Address = form["address"];
                     string filename = customeradd.Username + ".jpg";
-                    string path = Path.Combine(Server.MapPath("/Image/Customer/"), filename);
+                    string path = Path.Combine(Server.MapPath("/Content/Image/Customer/"), filename);
                     avataFile.SaveAs(path);
-                    customeradd.AvatarPath = "/Image/Customer/";
+                    customeradd.AvatarPath = "/Content/Image/Customer/";
                     customeradd.Avatar = filename;
                     db.Customers.Add(customeradd);
                     db.SaveChanges();
@@ -95,9 +95,9 @@ namespace Sneker.Areas.Admin.Controllers
                 customer.DateofBirth = form["date"];
                 customer.Address = form["address"];
                 string filename = customer.Username + ".jpg";
-                string path = Path.Combine(Server.MapPath("/Image/Customer/"), filename);
+                string path = Path.Combine(Server.MapPath("/Content/Image/Customer/"), filename);
                 imageFile.SaveAs(path);
-                customer.AvatarPath = "/Image/Customer/";
+                customer.AvatarPath = "/Content/Image/Customer/";
                 customer.Avatar = filename;
                 db.SaveChanges();
                 TempData["result"] = "Edit Customer successfully!";

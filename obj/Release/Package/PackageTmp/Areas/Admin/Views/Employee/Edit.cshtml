@@ -1,0 +1,88 @@
+﻿@model Sneker.Models.Employee
+@{
+    ViewBag.Title = "Edit";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdminPage1.cshtml";
+}
+
+<div class="container-fluid">
+    <div class="box--add">
+        <div class="row">
+            <div class="col-md-12">
+                <p class="text">Edit Admin</p>
+            </div>
+        </div>
+        <form action="/Admin/Employee/Edit/@Model.EmployeeID" method="post" enctype="multipart/form-data">
+            <div class="row">
+                <div class="col-md-1"></div>
+                <div class="col-md-5">
+                    <div class="form-group" hidden>
+                        <label class="form-text">Employee ID</label>
+                        <input type="text" class="form-control" value="@Model.EmployeeID" name="employeeid" />
+                    </div>
+                    <div class="form-group">
+                        <label class="form-text">First Name</label>
+                        <input type="text" class="form-control" value="@Model.Firstname" name="firstname" />
+                    </div>
+                    <div class="form-group">
+                        <label class="form-text">Last Name</label>
+                        <input type="text" class="form-control" value="@Model.Lastname" name="lastname" />
+                    </div>
+                    <div class="form-group">
+                        <label class="form-text">Username</label>
+                        <input type="text" class="form-control" readonly value="@Model.Username" name="username" />
+                    </div>
+                    <div class="form-group">
+                        <label class="form-text">Password</label>
+                        <input type="password" class="form-control" readonly value="@Model.Password" name="password" />
+                    </div>
+                    <div class="form-group">
+                        <label class="form-text">Email</label>
+                        <input type="text" class="form-control" value="@Model.Email" name="email" />
+                    </div>
+                </div>
+                <div class="col-md-5">
+                    <div class="form-group">
+                        <label class="form-text">Phone</label>
+                        <input type="text" placeholder="%" class="form-control" value="@Model.Phone" name="phone" />
+                    </div>
+                    <div class="form-group">
+                        <label class="form-text">Birthday</label>
+                        <input type="date" placeholder="" class="form-control" value="@Model.Birthday" name="birthday" />
+                    </div>
+                    <div class="form-group">
+                        <label class="form-text">Address</label>
+                        <input type="text" placeholder="" class="form-control" value="@Model.Address" name="address" />
+                    </div>
+                    <div class="form-group">
+                        <label class="form-text">Image</label>
+                        <input type="file" class="form-control" onchange="chooseFile(this)" id="imageFile" value="@Model.Photo" name="imageFile" />
+                    </div>
+                    <div class="form-group">
+                        <img class="img---product mt-4" id="image" name="image" src="@Model.PhotoPath@Model.Photo" />
+                    </div>
+                </div>
+                <div class="col-md-1"></div>
+            </div>
+            <div class="row mt-3">
+                <div class="col-md-4"></div>
+                <div class="col-md-4">
+                    <button type="submit" name="create" class="btn--dark">Update</button>
+                </div>
+                <div class="col-md-4"></div>
+            </div>
+        </form>
+    </div>
+</div>
+<script>
+    function chooseFile(fileInput) {
+        if (fileInput.files && fileInput.files[0]) {
+            var reader = new FileReader();
+
+            reader.onload = function (e) {
+                $('#image').attr('src', e.target.result);
+            }
+            reader.readAsDataURL(fileInput.files[0]);
+        }
+    }
+</script>
+

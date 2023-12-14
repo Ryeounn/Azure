@@ -56,9 +56,9 @@ namespace Sneker.Areas.Admin.Controllers
                     employee.Birthday = form["birthday"];
                     employee.Address = form["address"];
                     string filename = employee.Username + ".jpg";
-                    string path = Path.Combine(Server.MapPath("/Image/Employee/"), filename);
+                    string path = Path.Combine(Server.MapPath("/Content/Image/Employee/"), filename);
                     imageFile.SaveAs(path);
-                    employee.PhotoPath = "/Image/Employee/";
+                    employee.PhotoPath = "/Content/Image/Employee/";
                     employee.Photo = filename;
                     db.Employees.Add(employee);
                     db.SaveChanges();
@@ -102,9 +102,9 @@ namespace Sneker.Areas.Admin.Controllers
                 employee.Birthday = form["birthday"];
                 employee.Address = form["address"];
                 string filename = employee.Username + ".jpg";
-                string path = Path.Combine(Server.MapPath("/Image/Employee/"), filename);
+                string path = Path.Combine(Server.MapPath("/Content/Image/Employee/"), filename);
                 imageFile.SaveAs(path);
-                employee.PhotoPath = "/Image/Employee/";
+                employee.PhotoPath = "/Content/Image/Employee/";
                 employee.Photo = filename;
                 db.SaveChanges();
                 TempData["result"] = "Edit Employee successfully!";

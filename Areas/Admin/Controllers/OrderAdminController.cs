@@ -60,17 +60,6 @@ namespace Sneker.Areas.Admin.Controllers
                 return RedirectToAction("Order", "OrderAdmin");
             }
         }
-
-
-
-
-        public ActionResult Delete(int id)
-        {
-            var order = db.Orders.Find(id);
-            db.Orders.Remove(order);
-            db.SaveChanges();
-            return RedirectToAction("Order", "OrderAdmin");
-        }
     }
 }
 

@@ -1,0 +1,58 @@
+﻿@{
+    ViewBag.Title = "Information";
+    Layout = "~/Views/Shared/_LayoutPage1.cshtml";
+}
+<div class="container light-style flex-grow-1 container-p-y">
+    <h4 class="font-weight-bold py-3 mb-4 title--infor">
+        Account settings
+    </h4>
+    <div class="card overflow-hidden mb-5">
+        <div class="row no-gutters row-bordered row-border-light ">
+            <div class="col-md-3 pt-0">
+                <div class="list-group list-group-flush account-settings-links">
+                    <a class="list-group-item list-group-item-action active" data-toggle="list"
+                       href="" id="btnGeneral">General</a>
+                    <a class="list-group-item list-group-item-action" data-toggle="list"
+                       href="" id="btnChange">Change password</a>
+                    <a class="list-group-item list-group-item-action"
+                       href="@Url.Action("Logout","Account")">Log Out</a>
+                </div>
+            </div>
+
+            <div class="col-md-9 ">
+                <div class="tab-content">
+                    <div class="tab-pane fade active show" id="account-general">
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    $(document).ready(function () {
+        $("#account-general").load('/Account/General');
+    })
+
+    //ajax load change password
+    $('#btnChange').click(function () {
+        $("#account-general").load('/Account/ChangePassword');
+    });
+
+    $('#btnGeneral').click(function () {
+        $("#account-general").load('/Account/General');
+    });
+
+    //Function changer Avt
+    function chooseFile(fileInput) {
+        if (fileInput.files && fileInput.files[0]) {
+            var reader = new FileReader();
+
+            reader.onload = function (e) {
+                $('#image').attr('src', e.target.result);
+            }
+            reader.readAsDataURL(fileInput.files[0]);
+        }
+    }
+</script>

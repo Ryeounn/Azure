@@ -1,0 +1,184 @@
+﻿@model List<Sneker.Models.Order>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdminPage1.cshtml";
+}
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-3">
+            <div class="dfgh">
+                <div class="row">
+                    <div class="col-md-6">
+                        <p class="text---admin---product">32</p>
+                        <p class="text---admin---mt">Product</p>
+                    </div>
+                    <div class="col-md-6">
+                        <i class="fa-solid fa-tags icon---shoppingcar"></i>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-1">
+
+                    </div>
+                    <div class="col-md-10">
+                        <div class="progress">
+                            <div class="progress-bar" style="width:100%"></div>
+                        </div>
+                    </div>
+                    <div class="col-md-1">
+
+                    </div>
+                </div>
+                <div class="row">
+                    <p class="phantram---admin">100%</p>
+                </div>
+            </div>
+
+        </div>
+        <div class="col-md-3">
+            <div class="dfgh">
+                <div class="row">
+                    <div class="col-md-6">
+                        <p class="text---admin---product">899</p>
+                        <p class="text---admin---mt">Sold out</p>
+                    </div>
+                    <div class="col-md-6">
+                        <i class="fa-solid fa-truck icon---shoppingcar"></i>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-1">
+
+                    </div>
+                    <div class="col-md-10">
+                        <div class="progress">
+                            <div class="progress-bar" style="width:6%"></div>
+                        </div>
+                    </div>
+                    <div class="col-md-1">
+
+                    </div>
+                </div>
+                <div class="row">
+                    <p class="phantram---admin">6%</p>
+                </div>
+            </div>
+
+        </div>
+        <div class="col-md-3">
+            <div class="dfgh">
+                <div class="row">
+                    <div class="col-md-6">
+                        <p class="text---admin---product">14101</p>
+                        <p class="text---admin---mt">In stock</p>
+                    </div>
+                    <div class="col-md-6">
+                        <i class="fa-solid fa-undo icon---shoppingcar"></i>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-1">
+
+                    </div>
+                    <div class="col-md-10">
+                        <div class="progress">
+                            <div class="progress-bar" style="width:94%"></div>
+                        </div>
+                    </div>
+                    <div class="col-md-1">
+
+                    </div>
+                </div>
+                <div class="row">
+                    <p class="phantram---admin">94%</p>
+                </div>
+            </div>
+
+        </div>
+        <div class="col-md-3">
+            <div class="dfgh">
+                <div class="row">
+                    <div class="col-md-6">
+                        <p class="text---admin---product">21.150$</p>
+                        <p class="text---admin---mt">Revenue</p>
+                    </div>
+                    <div class="col-md-6">
+                        <i class="fa-solid fa-clipboard icon---shoppingcar"></i>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-1">
+
+                    </div>
+                    <div class="col-md-10">
+                        <div class="progress">
+                            <div class="progress-bar" style="width:6%"></div>
+                        </div>
+                    </div>
+                    <div class="col-md-1">
+                    </div>
+                </div>
+                <div class="row">
+                    <p class="phantram---admin">6%</p>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-6">
+            <div class="mai---shipo">
+                <canvas id="order" height="400" width="600"></canvas>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="mai---shipo">
+                <canvas id="total" height="400" width="600"></canvas>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="mai---shipo">
+                <p class="text---sales---admin">Order</p>
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>Order ID</th>
+                            <th>Order Date</th>
+                            <th>Email</th>
+                            <th>Phone</th>
+                            <th>Ship Name</th>
+                            <th>Ship Address</th>
+                            <th>Ship City</th>
+                            <th>Ship Country</th>
+                            <th>Note</th>
+                            <th>Status</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td>@item.OrderID</td>
+                                <td>@item.Orderdate</td>
+                                <td>@item.Email</td>
+                                <td>@item.Phone</td>
+                                <td>@item.Shipname</td>
+                                <td>@item.Shipaddress</td>
+                                <td>@item.Shipcity</td>
+                                <td>@item.Shipcountry</td>
+                                <td>@item.Note</td>
+                                <td>@item.Status</td>
+
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="~/Areas/Admin/Script/Chart.js"></script>

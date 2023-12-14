@@ -1,0 +1,193 @@
+﻿@model List<Sneker.Models.Product>
+@{
+    ViewBag.Title = "Product";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdminPage1.cshtml";
+}
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-3">
+            <div class="dfgh">
+                <div class="row">
+                    <div class="col-md-6">
+                        <p class="text---admin---product">8</p>
+                        <p class="text---admin---mt">Nike</p>
+                    </div>
+                    <div class="col-md-6">
+                        <img src="~/Areas/Admin/Icon/nike.png" width="35" height="28" class="icon---shoppingcar"/>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-1"></div>
+                    <div class="col-md-10">
+                        <div class="progress">
+                            <div class="progress-bar" style="width:25%"></div>
+                        </div>
+                    </div>
+                    <div class="col-md-1"></div>
+                </div>
+                <div class="row">
+                    <p class="phantram---admin">25%</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="dfgh">
+                <div class="row">
+                    <div class="col-md-6">
+                        <p class="text---admin---product">8</p>
+                        <p class="text---admin---mt">Adidas</p>
+                    </div>
+                    <div class="col-md-6">
+                        <img src="~/Areas/Admin/Icon/adidas.png" width="35" height="28" class="icon---shoppingcar" />
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-1"></div>
+                    <div class="col-md-10">
+                        <div class="progress">
+                            <div class="progress-bar" style="width:25%"></div>
+                        </div>
+                    </div>
+                    <div class="col-md-1"></div>
+                </div>
+                <div class="row">
+                    <p class="phantram---admin">25%</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="dfgh">
+                <div class="row">
+                    <div class="col-md-6">
+                        <p class="text---admin---product">8</p>
+                        <p class="text---admin---mt">Puma</p>
+                    </div>
+                    <div class="col-md-6">
+                        <img src="~/Areas/Admin/Icon/puma.png" width="35" height="28" class="icon---shoppingcar" />
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-1"> </div>
+                    <div class="col-md-10">
+                        <div class="progress">
+                            <div class="progress-bar" style="width:25%"></div>
+                        </div>
+                    </div>
+                    <div class="col-md-1"></div>
+                </div>
+                <div class="row">
+                    <p class="phantram---admin">25%</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="dfgh">
+                <div class="row">
+                    <div class="col-md-6">
+                        <p class="text---admin---product">8</p>
+                        <p class="text---admin---mt">Converse</p>
+                    </div>
+                    <div class="col-md-6">
+                        <img src="~/Areas/Admin/Icon/converse.png" width="35" height="28" class="icon---shoppingcar" />
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-1"></div>
+                    <div class="col-md-10">
+                        <div class="progress">
+                            <div class="progress-bar" style="width:25%"></div>
+                        </div>
+                    </div>
+                    <div class="col-md-1">
+                    </div>
+                </div>
+                <div class="row">
+                    <p class="phantram---admin">25%</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-12">
+            <div class="mai---shipo11" id="ajax--load">
+                <div class="row">
+                    <div class="col-md-1">
+                        <p class="mai---anh">Product</p>
+                    </div>
+                    <div class="col-md-5">
+                        <a href="/Admin/ProductAdmin/Add"><i class="fa-solid fa-circle-plus icon---nut"></i></a>
+                    </div>
+                    <div class="col-md-3"></div>
+                    <form action="/Admin/ProductAdmin/Shoe" method="post">
+                        <div class="col-md-3">
+                            <input class="timkiem-nyc" type="text" placeholder="Product Name" id="username" name="search">
+                            <button class="btn icon---kinh" type="submit"><i class="fa-solid fa-magnifying-glass "></i></button>
+                        </div>
+                    </form>
+                </div>
+                <div class="row">
+                    @if (ViewBag.SuccessMg != null)
+                    {
+                        <div id="msgAlert" style="margin-left: 3em;" class="alert alert-success">
+                            @ViewBag.SuccessMg
+                        </div>
+                    }
+                    else if (ViewBag.ErrorMg != null)
+                    {
+                        <div id="msgsAlert" style="margin-left: 3em;" class="alert alert-danger">
+                            @ViewBag.ErrorMg
+                        </div>
+                    }
+                </div>
+
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Picture</th>
+                            <th>Code</th>
+                            <th>Name</th>
+                            <th>Size</th>
+                            <th>Quantity</th>
+                            <th>In Stock</th>
+                            <th>Price</th>
+                            <th>Discount</th>
+                            <th>Edit</th>
+                            <th>Delete</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td>@item.ProductID</td>
+                                <td>
+                                    @{
+                                        string url = item.PicturePath + item.Picture;
+                                    }
+                                    <img class="img---product" src="@url" />
+                                </td>
+                                <td>@item.Productcode</td>
+                                <td>@item.Productname</td>
+                                <td>@item.Size</td>
+                                <td>@item.Quantityperunit</td>
+                                <td>@item.Unitinstock</td>
+                                <td>@item.Unitprice$</td>
+                                <td>@item.Discount%</td>
+                                <td><a class="link--changestatus" href="/Admin/ProductAdmin/Edit/@item.ProductID"><i class="fa-solid fa-pen"></i></a></td>
+                                <td><a class="link--changestatus" href="/Admin/ProductAdmin/Delete/@item.ProductID"><i class="fa-solid fa-trash"></i></a></td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    setTimeout(function () {
+        $('#msgAlert').fadeOut('slow');
+        $('#msgsAlert').fadeOut('slow');
+    }, 2000);
+</script>

@@ -1,0 +1,192 @@
+﻿@model List<Sneker.Models.Employee>
+@{
+    ViewBag.Title = "Staff";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdminPage1.cshtml";
+}
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-3">
+            <div class="dfgh">
+                <div class="row">
+                    <div class="col-md-6">
+                        <p class="text---admin---product">5</p>
+                        <p class="text---admin---mt">Employee</p>
+                    </div>
+                    <div class="col-md-6">
+                        <i class="fa-solid fa-user-tie icon---shoppingcar"></i>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-1"></div>
+                    <div class="col-md-10">
+                        <div class="progress">
+                            <div class="progress-bar" style="width:100%"></div>
+                        </div>
+                    </div>
+                    <div class="col-md-1"></div>
+                </div>
+                <div class="row">
+                    <p class="phantram---admin">100%</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="dfgh">
+                <div class="row">
+                    <div class="col-md-6">
+                        <p class="text---admin---product">1</p>
+                        <p class="text---admin---mt">Online</p>
+                    </div>
+                    <div class="col-md-6">
+                        <i class="fa-solid fa-link icon---shoppingcar"></i>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-1"></div>
+                    <div class="col-md-10">
+                        <div class="progress">
+                            <div class="progress-bar" style="width:20%"></div>
+                        </div>
+                    </div>
+                    <div class="col-md-1"></div>
+                </div>
+                <div class="row">
+                    <p class="phantram---admin">20%</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="dfgh">
+                <div class="row">
+                    <div class="col-md-6">
+                        <p class="text---admin---product">4</p>
+                        <p class="text---admin---mt">Offline</p>
+                    </div>
+                    <div class="col-md-6">
+                        <i class="fa-solid fa-unlink icon---shoppingcar"></i>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-1"> </div>
+                    <div class="col-md-10">
+                        <div class="progress">
+                            <div class="progress-bar" style="width:80%"></div>
+                        </div>
+                    </div>
+                    <div class="col-md-1"></div>
+                </div>
+                <div class="row">
+                    <p class="phantram---admin">80%</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="dfgh">
+                <div class="row">
+                    <div class="col-md-6">
+                        <p class="text---admin---product">1</p>
+                        <p class="text---admin---mt">Administrator</p>
+                    </div>
+                    <div class="col-md-6">
+                        <i class="fa-solid fa-user-cog icon---shoppingcar"></i>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-1"></div>
+                    <div class="col-md-10">
+                        <div class="progress">
+                            <div class="progress-bar" style="width:20%"></div>
+                        </div>
+                    </div>
+                    <div class="col-md-1">
+                    </div>
+                </div>
+                <div class="row">
+                    <p class="phantram---admin">20%</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="mai---shipo11">
+                <div class="row">
+                    <div class="col-md-1">
+                        <p class="mai---anh">Admin</p>
+                    </div>
+                    <div class="col-md-5">
+                        <a href="/Admin/Employee/Add"><i class="fa-solid fa-circle-plus icon---nut"></i></a>
+                    </div>
+                    <div class="col-md-3"></div>
+                    <form action="/Admin/Employee/Staff" method="post">
+                        <div class="col-md-3">
+                            <input class="timkiem-nyc" type="text" placeholder="Username" id="username" name="search">
+                            <button class="btn icon---kinh" type="submit"><i class="fa-solid fa-magnifying-glass "></i></button>
+                        </div>
+                    </form>
+                </div>
+                <div class="row">
+                    @if (ViewBag.SuccessMg != null)
+                    {
+                        <div id="msgAlert" style="margin-left: 3em;" class="alert alert-success">
+                            @ViewBag.SuccessMg
+                        </div>
+                    }
+                    else if (ViewBag.ErrorMg != null)
+                    {
+                        <div id="msgsAlert" style="margin-left: 3em;" class="alert alert-danger">
+                            @ViewBag.ErrorMg
+                        </div>
+                    }
+                </div>
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Photo</th>
+                            <th>Fisrt Name</th>
+                            <th>Last Name</th>
+                            <th>Username</th>
+                            <th>Email</th>
+                            <th>Phone</th>
+                            <th>Birthday</th>
+                            <th>Address</th>
+                            <th>Edit</th>
+                            <th>Delete</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td>@item.EmployeeID</td>
+                                <td>
+                                    @{
+                                        string url = item.PhotoPath + item.Photo;
+                                    }
+                                    <img class="img---product" src="@url" />
+                                </td>
+                                <td>@item.Firstname</td>
+                                <td>@item.Lastname</td>
+                                <td>@item.Username</td>
+                                <td>@item.Email</td>
+                                <td>@item.Phone</td>
+                                <td>@item.Birthday</td>
+                                <td>@item.Address</td>
+                                <td><a class="link--changestatus" href="/Admin/Employee/Edit/@item.EmployeeID"><i class="fa-solid fa-pen"></i></a></td>
+                                <td><a class="link--changestatus" href="/Admin/Employee/Delete/@item.EmployeeID"><i class="fa-solid fa-trash"></i></a></td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    setTimeout(function () {
+        $('#msgAlert').fadeOut('slow');
+        $('#msgsAlert').fadeOut('slow');
+    }, 2000);
+</script>

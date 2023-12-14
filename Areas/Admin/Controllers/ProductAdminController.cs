@@ -37,9 +37,9 @@ namespace Sneker.Areas.Admin.Controllers
         {
             if(ModelState.IsValid)
             {
-                productcode = form["productname"];
+                productcode = form["productcode"];
                 var productcoder = db.Products.FirstOrDefault(row => row.Productcode == productcode);
-                if(productcoder != null)
+                if(productcoder == null)
                 {
                     Product product = new Product();
                     product.Productcode = form["productcode"];
@@ -84,7 +84,7 @@ namespace Sneker.Areas.Admin.Controllers
         {
             id = int.Parse(form["productid"]);
             productcode = form["productname"];
-            Product product = db.Products.Where(row => row.ProductID == id && row.Productcode == productcode).FirstOrDefault();
+            Product product = db.Products.Where(row => row.ProductID == id).FirstOrDefault();
             if(product != null)
             {
                 product.Productcode = form["productcode"];
