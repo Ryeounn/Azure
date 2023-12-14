@@ -5,6 +5,110 @@
 }
 <div class="container-fluid">
     <div class="row">
+        <div class="col-md-3">
+            <div class="dfgh">
+                <div class="row">
+                    <div class="col-md-6">
+                        <p class="text---admin---product">8</p>
+                        <p class="text---admin---mt">Nike</p>
+                    </div>
+                    <div class="col-md-6">
+                        <img src="~/Areas/Admin/Icon/nike.png" width="35" height="28" class="icon---shoppingcar"/>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-1"></div>
+                    <div class="col-md-10">
+                        <div class="progress">
+                            <div class="progress-bar" style="width:25%"></div>
+                        </div>
+                    </div>
+                    <div class="col-md-1"></div>
+                </div>
+                <div class="row">
+                    <p class="phantram---admin">25%</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="dfgh">
+                <div class="row">
+                    <div class="col-md-6">
+                        <p class="text---admin---product">8</p>
+                        <p class="text---admin---mt">Adidas</p>
+                    </div>
+                    <div class="col-md-6">
+                        <img src="~/Areas/Admin/Icon/adidas.png" width="35" height="28" class="icon---shoppingcar" />
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-1"></div>
+                    <div class="col-md-10">
+                        <div class="progress">
+                            <div class="progress-bar" style="width:25%"></div>
+                        </div>
+                    </div>
+                    <div class="col-md-1"></div>
+                </div>
+                <div class="row">
+                    <p class="phantram---admin">25%</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="dfgh">
+                <div class="row">
+                    <div class="col-md-6">
+                        <p class="text---admin---product">8</p>
+                        <p class="text---admin---mt">Puma</p>
+                    </div>
+                    <div class="col-md-6">
+                        <img src="~/Areas/Admin/Icon/puma.png" width="35" height="28" class="icon---shoppingcar" />
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-1"> </div>
+                    <div class="col-md-10">
+                        <div class="progress">
+                            <div class="progress-bar" style="width:25%"></div>
+                        </div>
+                    </div>
+                    <div class="col-md-1"></div>
+                </div>
+                <div class="row">
+                    <p class="phantram---admin">25%</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="dfgh">
+                <div class="row">
+                    <div class="col-md-6">
+                        <p class="text---admin---product">8</p>
+                        <p class="text---admin---mt">Converse</p>
+                    </div>
+                    <div class="col-md-6">
+                        <img src="~/Areas/Admin/Icon/converse.png" width="35" height="28" class="icon---shoppingcar" />
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-1"></div>
+                    <div class="col-md-10">
+                        <div class="progress">
+                            <div class="progress-bar" style="width:25%"></div>
+                        </div>
+                    </div>
+                    <div class="col-md-1">
+                    </div>
+                </div>
+                <div class="row">
+                    <p class="phantram---admin">25%</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
         <div class="col-md-12">
             <div class="mai---shipo11" id="ajax--load">
                 <div class="row">
@@ -17,10 +121,24 @@
                     <div class="col-md-3"></div>
                     <form action="/Admin/ProductAdmin/Shoe" method="post">
                         <div class="col-md-3">
-                            <input class="timkiem-nyc" type="text" id="username" name="search">
+                            <input class="timkiem-nyc" type="text" placeholder="Product Name" id="username" name="search">
                             <button class="btn icon---kinh" type="submit"><i class="fa-solid fa-magnifying-glass "></i></button>
                         </div>
                     </form>
+                </div>
+                <div class="row">
+                    @if (ViewBag.SuccessMg != null)
+                    {
+                        <div id="msgAlert" style="margin-left: 3em;" class="alert alert-success">
+                            @ViewBag.SuccessMg
+                        </div>
+                    }
+                    else if (ViewBag.ErrorMg != null)
+                    {
+                        <div id="msgsAlert" style="margin-left: 3em;" class="alert alert-danger">
+                            @ViewBag.ErrorMg
+                        </div>
+                    }
                 </div>
 
                 <table class="table table-striped">
@@ -57,8 +175,8 @@
                                 <td>@item.Unitinstock</td>
                                 <td>@item.Unitprice$</td>
                                 <td>@item.Discount%</td>
-                                <td><a href="/Admin/ProductAdmin/Edit/@item.ProductID"><i class="fa-solid fa-pen"></i></a></td>
-                                <td><a href="/Admin/ProductAdmin/Delete/@item.ProductID"><i class="fa-solid fa-trash"></i></a></td>
+                                <td><a class="link--changestatus" href="/Admin/ProductAdmin/Edit/@item.ProductID"><i class="fa-solid fa-pen"></i></a></td>
+                                <td><a class="link--changestatus" href="/Admin/ProductAdmin/Delete/@item.ProductID"><i class="fa-solid fa-trash"></i></a></td>
                             </tr>
                         }
                     </tbody>
@@ -67,3 +185,9 @@
         </div>
     </div>
 </div>
+<script>
+    setTimeout(function () {
+        $('#msgAlert').fadeOut('slow');
+        $('#msgsAlert').fadeOut('slow');
+    }, 2000);
+</script>

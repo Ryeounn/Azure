@@ -1,0 +1,200 @@
+﻿@model List<Sneker.Models.Customer>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdminPage1.cshtml";
+}
+
+
+
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-3">
+            <div class="dfgh">
+                <div class="row">
+                    <div class="col-md-6">
+                        <p class="text---admin---product">10</p>
+                        <p class="text---admin---mt">Potential</p>
+                    </div>
+                    <div class="col-md-6">
+                        <i class="fa-solid fa-user-group icon---shoppingcar"></i>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-1"></div>
+                    <div class="col-md-10">
+                        <div class="progress">
+                            <div class="progress-bar" style="width:100%"></div>
+                        </div>
+                    </div>
+                    <div class="col-md-1"></div>
+                </div>
+                <div class="row">
+                    <p class="phantram---admin">100%</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="dfgh">
+                <div class="row">
+                    <div class="col-md-6">
+                        <p class="text---admin---product">6</p>
+                        <p class="text---admin---mt">Total Users</p>
+                    </div>
+                    <div class="col-md-6">
+                        <i class="fa-solid fa-users icon---shoppingcar"></i>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-1"></div>
+                    <div class="col-md-10">
+                        <div class="progress">
+                            <div class="progress-bar" style="width:60%"></div>
+                        </div>
+                    </div>
+                    <div class="col-md-1"></div>
+                </div>
+                <div class="row">
+                    <p class="phantram---admin">60%</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="dfgh">
+                <div class="row">
+                    <div class="col-md-6">
+                        <p class="text---admin---product">26</p>
+                        <p class="text---admin---mt">Check Wed</p>
+                    </div>
+                    <div class="col-md-6">
+                        <i class="fa-solid fa-eye icon---shoppingcar"></i>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-1"></div>
+                    <div class="col-md-10">
+                        <div class="progress">
+                            <div class="progress-bar" style="width:62%"></div>
+                        </div>
+                    </div>
+                    <div class="col-md-1"></div>
+                </div>
+                <div class="row">
+                    <p class="phantram---admin">62%</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="dfgh">
+                <div class="row">
+                    <div class="col-md-6">
+                        <p class="text---admin---product">20</p>
+                        <p class="text---admin---mt">Favorite</p>
+                    </div>
+                    <div class="col-md-6">
+
+                        <i class="fa-solid fa-fire  icon---shoppingcar"></i>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-1"></div>
+                    <div class="col-md-10">
+                        <div class="progress">
+                            <div class="progress-bar" style="width:10%"></div>
+                        </div>
+                    </div>
+                    <div class="col-md-1">
+                    </div>
+                </div>
+                <div class="row">
+                    <p class="phantram---admin">10%</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="mai---shipo11">
+                    <div class="row">
+                        <div class="col-md-1">
+                            <p class="mai---anh">User</p>
+                        </div>
+                        <div class="col-md-5">
+                            <a href="/Admin/UserAdmin/Add"><i class="fa-solid fa-circle-plus icon---nut"></i></a>
+                        </div>
+                        <div class="col-md-3"></div>
+                        <form action="" method="post">
+                            <div class="col-md-3">
+                                <input class="timkiem-nyc" placeholder="Username" type="text" id="username" name="search">
+                                <button class="btn icon---kinh" type="submit"><i class="fa-solid fa-magnifying-glass "></i></button>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="row">
+                        @if (ViewBag.SuccessMg != null)
+                        {
+                            <div id="msgAlert" style="margin-left: 3em;" class="alert alert-success">
+                                @ViewBag.SuccessMg
+                            </div>
+                        }
+                        else if (ViewBag.ErrorMg != null)
+                        {
+                            <div id="msgsAlert" style="margin-left: 3em;" class="alert alert-danger">
+                                @ViewBag.ErrorMg
+                            </div>
+                        }
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <table class="table table-striped">
+                                <thead>
+                                    <tr>
+                                        <th>ID</th>
+                                        <th>Avatar</th>
+                                        <th>UserName</th>
+                                        <th>Name</th>
+                                        <th>Email</th>
+                                        <th>Phone</th>
+                                        <th>DateOfBirth</th>
+                                        <th>Address</th>
+                                        <th>Edit</th>
+                                        <th>Delete</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach (var item in Model)
+                                    {
+                                        <tr>
+                                            <td>@item.CustomerID</td>
+                                            <td>
+                                                @{
+                                                    string url = item.AvatarPath + item.Avatar;
+                                                }
+                                                <img class="img---product" src="@url" />
+                                            </td>
+                                            <td>@item.Username</td>
+                                            <td>@item.Name</td>
+                                            <td>@item.Email</td>
+                                            <td>@item.Phone</td>
+                                            <td>@item.DateofBirth</td>
+                                            <td>@item.Address</td>
+                                            <td><a class="link--changestatus" href="/Admin/UserAdmin/Edit/@item.CustomerID"><i class="fa-solid fa-pen"></i></a></td>
+                                            <td><a class="link--changestatus" href="/Admin/UserAdmin/Delete/@item.CustomerID"><i class="fa-solid fa-trash"></i></a></td>
+                                        </tr>
+                                    }
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        setTimeout(function () {
+            $('#msgAlert').fadeOut('slow');
+            $('#msgsAlert').fadeOut('slow');
+        }, 2000);
+    </script>

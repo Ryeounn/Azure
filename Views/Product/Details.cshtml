@@ -16,6 +16,20 @@
 <hr />
 
 <div class="container">
+    <div class="row">
+        @if (ViewBag.SuccessMg != null)
+        {
+            <div id="msgAlert" style="margin-left: 1em;" class="alert alert-success">
+                @ViewBag.SuccessMg
+            </div>
+        }
+        else if (ViewBag.ErrorMg != null)
+        {
+            <div id="msgsAlert" style="margin-left: 1em;" class="alert alert-danger">
+                @ViewBag.ErrorMg
+            </div>
+        }
+    </div>
     <div class="row mt-5">
         <div class="col-md-6">
             <div class="img-magnifier-container">

@@ -1,0 +1,65 @@
+﻿@{
+    ViewBag.Title = "Information";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdminPage1.cshtml";
+}
+
+<div class="container-fluid">
+    <div class="box--infor">
+        <div class="row">
+            <div class="col-md-12">
+                <p class="text">Information</p>
+                <div class="list-add list-group account-settings-links">
+                    <a href="" class="list-group-item list-group-item-action mg--left active" id="general" data-toggle="list">General</a>
+                    <a href="" class="list-group-item list-group-item-action" id="password" data-toggle="list">Password</a>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            @if (ViewBag.SuccessMg != null)
+            {
+                <div id="msgAlert" style="margin-left: 1em;" class="alert alert-success">
+                    @ViewBag.SuccessMg
+                </div>
+            }
+            else if (ViewBag.ErrorMg != null)
+            {
+                <div id="msgsAlert" style="margin-left: 1em;" class="alert alert-danger">
+                    @ViewBag.ErrorMg
+                </div>
+            }
+        </div>
+        <span id="ajax--infor">
+            
+        </span>
+    </div>
+</div>
+<script>
+    function chooseFile(fileInput) {
+        if (fileInput.files && fileInput.files[0]) {
+            var reader = new FileReader();
+
+            reader.onload = function (e) {
+                $('#image').attr('src', e.target.result);
+            }
+            reader.readAsDataURL(fileInput.files[0]);
+        }
+    }
+
+    $('#password').click(function () {
+        $('#ajax--infor').load('/Admin/HomeAdmin/ChangePassword')
+    })
+
+    $('#general').click(function () {
+        $('#ajax--infor').load('/Admin/HomeAdmin/General');
+    })
+
+    $(document).ready(function () {
+        $('#ajax--infor').load('/Admin/HomeAdmin/General');
+    })
+
+    setTimeout(function () {
+        $('#msgAlert').fadeOut('slow');
+        $('#msgsAlert').fadeOut('slow');
+    }, 2000);
+</script>
+

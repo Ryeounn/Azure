@@ -87,9 +87,17 @@ namespace Sneker.Controllers
 
         public ActionResult Order()
         {
+            if (TempData["result"] != null)
+            {
+                ViewBag.SuccessMg = TempData["result"];
+            }
+            if (TempData["error"] != null)
+            {
+                ViewBag.ErrorMg = TempData["error"];
+            }
             if (Session["Cart"] == null)
             {
-                return RedirectToAction("Order", "Product");
+                return RedirectToAction("Shoes", "Product");
             }
             Cart cart = Session["Cart"] as Cart;
 
@@ -111,6 +119,7 @@ namespace Sneker.Controllers
         {
             Cart cart = Session["Cart"] as Cart;
             cart.Remove_CartItem(id);
+            TempData["result"] = "Delete Product in cart successfully!";
             return RedirectToAction("Order", "Product");
         }
 

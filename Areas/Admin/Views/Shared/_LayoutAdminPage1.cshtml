@@ -11,6 +11,7 @@
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script src="~/Content/Script/lazyload.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <link rel="icon" type="image/x-icon" href="~/Content/Image/Home/logo-brand.png">
     <title>@ViewBag.Title</title>
 </head>
@@ -19,11 +20,11 @@
         <header>
             <div class="image-text">
                 <span class="image">
-                    <a href="information.php">@Html.Action("Avatar", "HomeAdmin")</a>
+                    <a href="@Url.Action("Information","HomeAdmin")">@Html.Action("Avatar", "HomeAdmin")</a>
                 </span>
                 <div class="text header-text">
                     <span class="name">@Html.Action("Name", "HomeAdmin")</span>
-                    <span class="profession"><?php echo $row['position'] ?></span>
+                    <span class="profession"></span>
                 </div>
             </div>
 
@@ -56,25 +57,25 @@
                         </a>
                     </li>
                     <li class="nav-link">
-                        <a href="useradmin.php">
+                        <a href="@Url.Action("Customer","UserAdmin")">
                             <i class="fas fa-users icon"></i>
                             <span class="text nav-text">User</span>
                         </a>
                     </li>
                     <li class="nav-link">
-                        <a href="orderadmin.php">
+                        <a href="@Url.Action("Order","OrderAdmin")">
                             <i class="fas fa-clipboard-check icon"></i>
                             <span class="text nav-text">Order</span>
                         </a>
                     </li>
                     <li class="nav-link">
-                        <a href="revenue.php">
+                        <a href="@Url.Action("Revenue","RevenueAdmin")">
                             <i class="fas fa-chart-pie icon"></i>
                             <span class="text nav-text">Revenue</span>
                         </a>
                     </li>
                     <li class="nav-link">
-                        <a href="notifications.php">
+                        <a href="@Url.Action("Noti","Notification")">
                             <i class="fas fa-bell icon"></i>
                             <span class="text nav-text">Notifications</span>
                         </a>
@@ -112,20 +113,22 @@
             var keycode = (event.keyCode ? event.keyCode : event.which);
             if (keycode == '13') {
                 const input = document.getElementById('input').value;
-                if (input === 'dashboard' || input === 'Dashboard' || input === 'DASHBOARD') {
-                    window.location = 'homeadmin.php';
+                if (input === 'dashboard' || input === 'Dashboard' || input === 'DASHBOARD' || input === 'home' || input === 'Home' || input === 'HOME') {
+                    window.location = '/Admin/HomeAdmin/Index';
                 } else if (input === 'product' || input === 'Product' || input === 'PRODUCT') {
-                    window.location = 'productadmin.php';
-                } else if (input === 'user' || input === 'User' || input === 'USER') {
-                    window.location = 'useradmin.php';
+                    window.location = '/Admin/ProductAdmin/Shoe';
+                } else if (input === 'user' || input === 'User' || input === 'USER' || input === 'customer' || input === 'Customer' || input === 'CUSTOMER') {
+                    window.location = '/Admin/UserAdmin/Customer';
                 } else if (input === 'order' || input === 'Order' || input === 'ORDER') {
-                    window.location = 'orderadmin.php';
-                } else if (input === 'revenue' || input === 'Revenue' || input === 'REVENUE') {
-                    window.location = 'revenue.php';
+                    window.location = '/Admin/OrderAdmin/Order';
+                } else if (input === 'employee' || input === 'Employee' || input === 'EMPLOYEE' || input === 'admin' || input === 'Admin' || input === 'ADMIN') {
+                    window.location = '/Admin/Employee/Staff';
                 } else if (input === 'logout' || input === 'Logout' || input === 'LOGOUT') {
-                    window.location = 'logoutadmin.php';
+                    window.location = '/Admin/HomeAdmin/Logout';
                 } else if (input === 'information' || input === 'Information' || input === 'INFORMATION') {
-                    window.location = 'information.php';
+                    window.location = '/Admin/HomeAdmin/Information';
+                } else if (input === 'revenue' || input === 'Revenue' || input === 'REVENUE') {
+                    window.location = '/Admin/RevenueAdmin/Revenue';
                 } else {
                     alert('No Result');
                 }

@@ -21,6 +21,20 @@
         </div>
         <div class="col-md-2"></div>
     </div>
+    <div class="row">
+        @if (ViewBag.SuccessMg != null)
+        {
+            <div id="msgAlert" style="margin-top: 1em; margin-left: 24em " class="alert alert-success">
+                @ViewBag.SuccessMg
+            </div>
+        }
+        else if (ViewBag.ErrorMg != null)
+        {
+            <div id="msgsAlert" style="margin-top: 1em;margin-left: 23em;" class="alert alert-danger">
+                @ViewBag.ErrorMg
+            </div>
+        }
+    </div>
     <div class="row mt-3">
         <div class="col-md-12">
             <a href="" data-toggle="list" id="btnForgot" class="forgot--login">Forgot password?</a>
@@ -35,4 +49,8 @@
         $('#ajax--load').load("/Account/ForgotPassword");
     })
 
+    setTimeout(function () {
+        $('#msgAlert').fadeOut('slow');
+        $('#msgsAlert').fadeOut('slow');
+    }, 2000);
 </script>

@@ -1,0 +1,51 @@
+﻿@model Sneker.Models.Employee
+<form action="/Admin/HomeAdmin/General" method="post" enctype="multipart/form-data">
+    <div class="row mt-3">
+        <div class="col-md-1"></div>
+        <div class="col-md-5">
+            <div class="form-group">
+                <label class="form-text">First Name</label>
+                <input type="text" class="form-control" name="firstname" value="@Model.Firstname" />
+            </div>
+            <div class="form-group">
+                <label class="form-text">Last Name</label>
+                <input type="text" class="form-control" name="lastname" value="@Model.Lastname" />
+            </div>
+            <div class="form-group">
+                <label class="form-text">Username</label>
+                <input type="text" class="form-control" readonly name="username" value="@Model.Username" />
+            </div>
+            <div class="form-group">
+                <label class="form-text">Email</label>
+                <input type="text" class="form-control" name="email" value="@Model.Email" />
+            </div>
+            <div class="form-group">
+                <label class="form-text">Phone</label>
+                <input type="text" placeholder="" class="form-control" name="phone" value="@Model.Phone" />
+            </div>
+            <div class="form-group">
+                <label class="form-text">Birthday</label>
+                <input type="date" placeholder="" class="form-control" name="birthday" value="@Model.Birthday" />
+            </div>
+            <div class="form-group">
+                <label class="form-text">Address</label>
+                <input type="text" placeholder="" class="form-control" name="address" value="@Model.Address" />
+            </div>
+        </div>
+        <div class="col-md-5">
+            <div class="infor-items-img fix-div-img">
+                <img class="infor-changer-avt" id="image" src="@Model.PhotoPath@Model.Photo">
+                <input type="file" id="imageFile" name="imageFile" onchange="chooseFile(this)" class="btnchangavt" accept=".png, .jpg, .jpeg">
+                <p class="infor-img-accept">Accept: .JPG, .JPEG, .PNG</p>
+            </div>
+        </div>
+        <div class="col-md-1"></div>
+    </div>
+    <div class="row mt-3">
+        <div class="col-md-4"></div>
+        <div class="col-md-4 mb-3">
+            <button type="submit" name="create" class="btn--dark">Create</button>
+        </div>
+        <div class="col-md-4"></div>
+    </div>
+</form>

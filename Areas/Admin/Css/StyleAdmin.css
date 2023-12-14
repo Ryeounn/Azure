@@ -323,19 +323,19 @@ body.dark .switch:before {
     text-transform: uppercase;
     font-weight: bold;
     padding-top: 20px;
-    padding-left: 2em;
+    padding-left: 1.1em;
 }
 
 .text---admin---mt {
     font-size: 24px;
     font-family: 'Times New Roman';
-    margin-left: 2em;
+    margin-left: 1.2em;
 }
 
 .icon---shoppingcar {
     font-size: 28px;
     margin-top: 1em;
-    margin-left: 1.5em;
+    margin-left: 3em;
 }
 
 .phantram---admin {
@@ -385,6 +385,7 @@ body.dark .switch:before {
     margin-top: 24px;
     border-radius: 5px;
     display: inline-block;
+    padding: 5px;
 }
 
 .icon---nut {
@@ -397,7 +398,7 @@ body.dark .switch:before {
     font-size: 24px;
     position: absolute;
     margin: -1.3em 0 0 9em;
-    margin-top: -1.5em;
+    margin-top: -1.7em;
 }
 
 .icon---kinh:focus{
@@ -405,13 +406,18 @@ body.dark .switch:before {
 }
 
 /*Add*/
-.box--add {
+.box--add,
+.box--infor{
     font-weight: bold;
     height: 100vh;
     margin-top: 1em;
     background-color: #fff;
     width: 100%;
     border-radius: 20px;
+}
+
+.box--infor {
+    height: 100%;
 }
 
 .btn--dark{
@@ -433,4 +439,94 @@ body.dark .switch:before {
     display: flex;
     align-items: center;
     justify-content: center;
+}
+
+/* Information */
+.infor-changer-avt {
+    width: 250px;
+    height: 250px;
+    border-radius: 50%;
+    margin: 2em 0 0 0;
+}
+
+.btnchangavt {
+    margin: 1em 0 0 5em;
+}
+
+input[type='file'] {
+    color: transparent;
+}
+
+.infor-img-accept {
+    margin: .5em 0 0 2.4em;
+    color: var(--text-color);
+}
+
+.fix-div-img {
+    margin: 10em 0 0 10em;
+}
+
+.fix-div-btn {
+    margin: 5em 0 0 -15em;
+}
+
+.list-group-item-action,
+.list-add,
+.list-group-item{
+    display: inline-block;
+}
+.list-add{
+    width: 100%;
+}
+
+.list-group-item + .list-group-item{
+    border: 1px solid #ccc
+}
+
+.list-group-item:last-child,
+.list-group-item:first-child{
+    border-bottom-right-radius: 10px;
+    border-bottom-left-radius: 10px;
+    border-top-right-radius: 10px;
+    border-top-left-radius: 10px;
+}
+
+.list-group-item-action {
+    width: 10%;
+}
+
+.mg--left{
+    margin-left: 2.5em;
+    
+}
+
+/* Revenue */
+#revenue,
+#product,
+#inventory {
+    margin-left: 20%;
+}
+
+/* Noti */
+.icon--noti{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 24px;
+}
+
+.cl--icon--check{
+    color: green;
+}
+
+.cl--icon--close{
+    color: red;
+}
+
+.link--changestatus:hover{
+    text-decoration: none;
+}
+
+.text--center--tb{
+    text-align: center;
 }

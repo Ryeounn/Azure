@@ -22,7 +22,20 @@
                 <p class="title--shopping">Shopping cart</p><span>(@Html.Action("BagCartTotal", "Product") product)</span>
             </div>
         </div>
-
+        <div class="row">
+            @if (ViewBag.SuccessMg != null)
+            {
+                <div id="msgAlert" style="margin-left: 1em;" class="alert alert-success">
+                    @ViewBag.SuccessMg
+                </div>
+            }
+            else if (ViewBag.ErrorMg != null)
+            {
+                <div id="msgsAlert" style="margin-left: 1em;" class="alert alert-danger">
+                    @ViewBag.ErrorMg
+                </div>
+            }
+        </div>
         <form action="/Product/ShowOrder" method="post">
             <div class="row">
                 <div class="col-md-9 mt-4">
@@ -130,6 +143,10 @@ else
         amount = (isNaN(amount) || amount == 0) ? 1 : amount;
         render(amount);
     });
+    setTimeout(function () {
+        $('#msgAlert').fadeOut('slow');
+        $('#msgsAlert').fadeOut('slow');
+    }, 2000);
 </script>
 @*@if (Model != null)
     {

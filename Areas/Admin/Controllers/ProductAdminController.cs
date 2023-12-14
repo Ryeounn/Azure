@@ -13,9 +13,17 @@ namespace Sneker.Areas.Admin.Controllers
     {
         // GET: Admin/ProductAdmin
         SnekerEntities db = new SnekerEntities();
-        public ActionResult Shoe(string search =" ")
+        public ActionResult Shoe(string search ="")
         {
             List<Product> products = db.Products.Where(row => row.Productname.Contains(search)).ToList();
+            if (TempData["result"] != null)
+            {
+                ViewBag.SuccessMg = TempData["result"];
+            }
+            if (TempData["error"] != null)
+            {
+                ViewBag.ErrorMg = TempData["error"];
+            }
             return View(products);
         }
 
@@ -29,7 +37,8 @@ namespace Sneker.Areas.Admin.Controllers
         {
             if(ModelState.IsValid)
             {
-                var productcoder = db.Products.Where(row => row.Productcode != productcode);
+                productcode = form["productname"];
+                var productcoder = db.Products.FirstOrDefault(row => row.Productcode == productcode);
                 if(productcoder != null)
                 {
                     Product product = new Product();
@@ -48,12 +57,13 @@ namespace Sneker.Areas.Admin.Controllers
                     product.Picture = filename;
                     db.Products.Add(product);
                     db.SaveChanges();
+                    TempData["result"] = "Add Product successfully!";
                     return RedirectToAction("Shoe", "ProductAdmin");
                 }
                 else
                 {
-                    ViewBag.Error = "Product Code already exist";
-                    return View();
+                    TempData["error"] = "Add Product fall because ProductCode already exists!";
+                    return RedirectToAction("Shoe", "ProductAdmin");
                 }
                 
             }
@@ -70,10 +80,11 @@ namespace Sneker.Areas.Admin.Controllers
         }
 
         [HttpPost]
-        public ActionResult Edit(int id, FormCollection form, HttpPostedFileBase imageFile)
+        public ActionResult Edit(int id, string productcode, FormCollection form, HttpPostedFileBase imageFile)
         {
             id = int.Parse(form["productid"]);
-            Product product = db.Products.Where(row => row.ProductID == id).FirstOrDefault();
+            productcode = form["productname"];
+            Product product = db.Products.Where(row => row.ProductID == id && row.Productcode == productcode).FirstOrDefault();
             if(product != null)
             {
                 product.Productcode = form["productcode"];
@@ -90,9 +101,14 @@ namespace Sneker.Areas.Admin.Controllers
                 product.PicturePath = "/Content/Image/Product/";
                 product.Picture = filename;
                 db.SaveChanges();
+                TempData["result"] = "Edit Product successfully!";
                 return RedirectToAction("Shoe", "ProductAdmin");
             }
-            return View();
+            else
+            {
+                TempData["error"] = "Edit Product fall!";
+                return RedirectToAction("Shoe", "ProductAdmin");
+            }
         }
 
         public ActionResult Delete(int id)
@@ -100,6 +116,7 @@ namespace Sneker.Areas.Admin.Controllers
             var product = db.Products.Find(id);
             db.Products.Remove(product);
             db.SaveChanges();
+            TempData["result"] = "Delete Product successfully!";
             return RedirectToAction("Shoe", "ProductAdmin");
         }
     }

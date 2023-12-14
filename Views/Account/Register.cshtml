@@ -39,9 +39,30 @@
         </div>
         <div class="col-md-2"></div>
     </div>
+    <div class="row">
+        @if (ViewBag.SuccessMg != null)
+        {
+            <div id="msgAlert" style="margin-left: 1em;" class="alert alert-success">
+                @ViewBag.SuccessMg
+            </div>
+        }
+        else if (ViewBag.ErrorMg != null)
+        {
+            <div id="msgsAlert" style="margin-top: 2em;margin-left: 22em;" class="alert alert-danger">
+                @ViewBag.ErrorMg
+            </div>
+        }
+    </div>
     <div class="row mt-3">
         <div class="col-md-12">
             <a href="@Url.Action("Users", "Account")" class="login--register">Sign in</a>
         </div>
     </div>
 </div>
+
+<script>
+    setTimeout(function () {
+        $('#msgAlert').fadeOut('slow');
+        $('#msgsAlert').fadeOut('slow');
+    }, 2000);
+</script>

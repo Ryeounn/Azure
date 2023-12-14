@@ -12,7 +12,7 @@ namespace Sneker.Models
         public string Name { get; set; }
         public string Description { get; set; }
         public int Quantity { get; set; }
-        public int Size { get; set; }
+        public Nullable<int> Size { get; set; }
         public int UnitinStock { get; set; }
         public int Unitpirce {  get; set; }
         public int Discount { get; set; }

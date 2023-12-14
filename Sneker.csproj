@@ -98,6 +98,12 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Areas\Admin\Css\StyleAdmin.css" />
+    <Content Include="Areas\Admin\Icon\adidas.png" />
+    <Content Include="Areas\Admin\Icon\converse.png" />
+    <Content Include="Areas\Admin\Icon\nike.png" />
+    <Content Include="Areas\Admin\Icon\puma.png" />
+    <Content Include="Areas\Admin\Script\Chart.js" />
+    <Content Include="Areas\Admin\Script\ChartRevenue.js" />
     <Content Include="Areas\Admin\Script\Layout.js" />
     <Content Include="Content\Css\Style.css" />
     <Content Include="Content\Image\Details\details.png" />
@@ -172,7 +178,11 @@
     <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
     <Compile Include="Areas\Admin\Controllers\EmployeeController.cs" />
     <Compile Include="Areas\Admin\Controllers\HomeAdminController.cs" />
+    <Compile Include="Areas\Admin\Controllers\NotificationController.cs" />
+    <Compile Include="Areas\Admin\Controllers\OrderAdminController.cs" />
     <Compile Include="Areas\Admin\Controllers\ProductAdminController.cs" />
+    <Compile Include="Areas\Admin\Controllers\RevenueAdminController.cs" />
+    <Compile Include="Areas\Admin\Controllers\UserAdminController.cs" />
     <Compile Include="Models\Cart.cs" />
     <Compile Include="Models\CartView.cs" />
     <Compile Include="Controllers\ProductController.cs" />
@@ -239,6 +249,19 @@
     <Content Include="Models\SnekerDBContext.edmx.diagram">
       <DependentUpon>SnekerDBContext.edmx</DependentUpon>
     </Content>
+    <Content Include="Areas\Admin\Views\Employee\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\HomeAdmin\Information.cshtml" />
+    <Content Include="Areas\Admin\Views\HomeAdmin\ChangePassword.cshtml" />
+    <Content Include="Areas\Admin\Views\HomeAdmin\General.cshtml" />
+    <Content Include="Areas\Admin\Views\OrderAdmin\Order.cshtml" />
+    <Content Include="Areas\Admin\Views\OrderAdmin\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\UserAdmin\Customer.cshtml" />
+    <Content Include="Areas\Admin\Views\UserAdmin\Add.cshtml" />
+    <Content Include="Areas\Admin\Views\UserAdmin\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\Notification\Noti.cshtml" />
+    <Content Include="Areas\Admin\Views\RevenueAdmin\Revenue.cshtml" />
+    <Content Include="Areas\Admin\Views\RevenueAdmin\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\Notification\Edit.cshtml" />
     <None Include="packages.config" />
     <Content Include="Views\Shared\_LayoutPage1.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />

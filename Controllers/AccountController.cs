@@ -21,6 +21,14 @@ namespace Sneker.Controllers
         }
         public ActionResult Login()
         {
+            if (TempData["result"] != null)
+            {
+                ViewBag.SuccessMg = TempData["result"];
+            }
+            if (TempData["error"] != null)
+            {
+                ViewBag.ErrorMg = TempData["error"];
+            }
             return View();
         }
 
@@ -65,7 +73,7 @@ namespace Sneker.Controllers
                 }
                 else
                 {
-                    ViewBag.error = "Login failed";
+                    TempData["error"] = "Login fall because Username or Password not match!";
                     return RedirectToAction("Users");
                 }
             }
@@ -100,6 +108,14 @@ namespace Sneker.Controllers
 
         public ActionResult Change()
         {
+            if (TempData["result"] != null)
+            {
+                ViewBag.SuccessMg = TempData["result"];
+            }
+            if (TempData["error"] != null)
+            {
+                ViewBag.ErrorMg = TempData["error"];
+            }
             return View();
         }
 
@@ -118,10 +134,12 @@ namespace Sneker.Controllers
                     var customeredit = db.Customers.FirstOrDefault(s => s.Email == email);
                     customeredit.Password = pass;
                     db.SaveChanges();
+                    TempData["result"] = "Forget Password successfully! Please Login again";
                     return View("Users");
                 }
                 else
                 {
+                    TempData["error"] = "Forget Password fail!";
                     return View("Users");
                 }
             }
@@ -131,6 +149,14 @@ namespace Sneker.Controllers
 
         public ActionResult Register()
         {
+            if (TempData["result"] != null)
+            {
+                ViewBag.SuccessMg = TempData["result"];
+            }
+            if (TempData["error"] != null)
+            {
+                ViewBag.ErrorMg = TempData["error"];
+            }
             return View();
         }
 
@@ -146,12 +172,11 @@ namespace Sneker.Controllers
                     db.Customers.Add(customer);
                     db.SaveChanges();
                     return RedirectToAction("Users", "Account");
-
                 }
                 else
                 {
-                    ViewBag.error = "Username already exists";
-                    return View();
+                    TempData["error"] = "Register fail because Username or Email already exist!";
+                    return RedirectToAction("Register", "Account");
                 }
             }
             return View();
@@ -174,6 +199,14 @@ namespace Sneker.Controllers
 
         public ActionResult Information()
         {
+            if(TempData["result"] != null)
+            {
+                ViewBag.SuccessMg = TempData["result"];
+            }
+            if (TempData["error"] != null)
+            {
+                ViewBag.ErrorMg = TempData["error"];
+            }
             return View();
         }
 
@@ -181,6 +214,14 @@ namespace Sneker.Controllers
         {
             var user = Session["Username"].ToString();
             Customer customer = db.Customers.Where(s => s.Username == user).FirstOrDefault();
+            if (TempData["result"] != null)
+            {
+                ViewBag.SuccessMg = TempData["result"];
+            }
+            if (TempData["error"] != null)
+            {
+                ViewBag.ErrorMg = TempData["error"];
+            }
             return View(customer);
         }
 
@@ -205,10 +246,12 @@ namespace Sneker.Controllers
                     imageFiles.SaveAs(path);
                     customeredit.Avatar = filename;
                     db.SaveChanges();
+                    TempData["result"] = "Update Information successfully!";
                     return RedirectToAction("Information", "Account");
                 }
                 else
                 {
+                    TempData["error"] = "Update Information fail!";
                     return RedirectToAction("Information", "Account");
                 }
             }
@@ -238,10 +281,12 @@ namespace Sneker.Controllers
                     var customeredit = db.Customers.FirstOrDefault(s => s.Username == user);
                     customeredit.Password = NewPass;
                     db.SaveChanges();
+                    TempData["result"] = "Change Password successfully!";
                     return View("Information");
                 }
                 else
                 {
+                    TempData["result"] = "Change Password fail!";
                     return RedirectToAction("Information");
 
                 }
@@ -250,7 +295,6 @@ namespace Sneker.Controllers
             else
             {
                 return View("Login");
-
             }
         }
 

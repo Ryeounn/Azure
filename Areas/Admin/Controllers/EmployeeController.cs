@@ -6,7 +6,9 @@ using System.Linq;
 using System.Security.Cryptography;
 using System.Text;
 using System.Web;
+using System.Web.Helpers;
 using System.Web.Mvc;
+using System.Web.UI.WebControls;
 
 namespace Sneker.Areas.Admin.Controllers
 {
@@ -14,9 +16,17 @@ namespace Sneker.Areas.Admin.Controllers
     {
         // GET: Admin/Employee
         SnekerEntities db = new SnekerEntities();
-        public ActionResult Staff(string search = " ")
+        public ActionResult Staff(string search ="")
         {
-            List<Employee> employees = db.Employees.Where(row => row.Lastname.Contains(search)).ToList();
+            List<Employee> employees = db.Employees.Where(row => row.Username.Contains(search)).ToList();
+            if (TempData["result"] != null)
+            {
+                ViewBag.SuccessMg = TempData["result"];
+            }
+            if (TempData["error"] != null)
+            {
+                ViewBag.ErrorMg = TempData["error"];
+            }
             return View(employees);
         }
 
@@ -26,12 +36,14 @@ namespace Sneker.Areas.Admin.Controllers
         }
 
         [HttpPost]
-        public ActionResult Add(FormCollection form, HttpPostedFileBase imageFile)
+        public ActionResult Add(string username, string email, FormCollection form, HttpPostedFileBase imageFile)
         {
             if (ModelState.IsValid)
             {
-                var employees = db.Employees.Where(row => row.Username != form["username"]);
-                if (employees != null)
+                username = form["username"];
+                email = form["email"];
+                var employees = db.Employees.FirstOrDefault(row => row.Username == username && row.Email == email);
+                if (employees == null)
                 {
                     Employee employee = new Employee();
                     var pass = GetMD5(form["password"]);
@@ -46,16 +58,17 @@ namespace Sneker.Areas.Admin.Controllers
                     string filename = employee.Username + ".jpg";
                     string path = Path.Combine(Server.MapPath("/Image/Employee/"), filename);
                     imageFile.SaveAs(path);
-                    employee.PhotoPath = "/Content/Image/Product/";
+                    employee.PhotoPath = "/Image/Employee/";
                     employee.Photo = filename;
                     db.Employees.Add(employee);
                     db.SaveChanges();
+                    TempData["result"] = "Add Employee successfully!";
                     return RedirectToAction("Staff", "Employee");
                 }
                 else
                 {
-                    ViewBag.Error = "Product Code already exist";
-                    return View();
+                    TempData["error"] = "Add Employee fall because Username already exist!";
+                    return RedirectToAction("Staff", "Employee");
                 }
 
             }
@@ -63,6 +76,54 @@ namespace Sneker.Areas.Admin.Controllers
             {
                 return View();
             }
+        }
+
+        public ActionResult Edit(int id)
+        {
+            Employee employees = db.Employees.Where(row => row.EmployeeID == id).FirstOrDefault();
+            return View(employees);
+        }
+
+        [HttpPost]
+        public ActionResult Edit(int id, string email, FormCollection form, HttpPostedFileBase imageFile)
+        {
+            id = int.Parse(form["employeeid"]);
+            var pass = GetMD5(form["password"]);
+            email = form["email"];
+            Employee employee = db.Employees.Where(row => row.EmployeeID == id && row.Email == email).FirstOrDefault();
+            if (employee != null)
+            {
+                employee.Firstname = form["firstname"];
+                employee.Lastname = form["lastname"];
+                employee.Username = form["username"];
+                employee.Password = pass;
+                employee.Email = form["email"];
+                employee.Phone = form["phone"];
+                employee.Birthday = form["birthday"];
+                employee.Address = form["address"];
+                string filename = employee.Username + ".jpg";
+                string path = Path.Combine(Server.MapPath("/Image/Employee/"), filename);
+                imageFile.SaveAs(path);
+                employee.PhotoPath = "/Image/Employee/";
+                employee.Photo = filename;
+                db.SaveChanges();
+                TempData["result"] = "Edit Employee successfully!";
+                return RedirectToAction("Staff", "Employee");
+            }
+            else
+            {
+                TempData["error"] = "Edit Employee fall!";
+                return RedirectToAction("Staff", "Employee");
+            }
+        }
+
+        public ActionResult Delete(int id)
+        {
+            var employee = db.Employees.Find(id);
+            db.Employees.Remove(employee);
+            db.SaveChanges();
+            TempData["result"] = "Edit Employee successfully!";
+            return RedirectToAction("Staff", "Employee");
         }
 
         public static string GetMD5(string str)
